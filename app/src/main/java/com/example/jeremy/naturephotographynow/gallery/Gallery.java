@@ -8,6 +8,7 @@ import java.util.List;
 public class Gallery {
     List<Picture> picArray;
     GalleryDisplayer displayer;
+    private Thumbnail thumbnail;
 
     public void populate(){
 
@@ -19,5 +20,13 @@ public class Gallery {
 
     public void setDisplayer(GalleryDisplayer displayer) {
         this.displayer = displayer;
+    }
+
+    public Thumbnail getThumbnail() {
+        return thumbnail;
+    }
+
+    public void setThumbnail(Thumbnail thumbnail) {
+        this.thumbnail = thumbnail;
     }
 }
