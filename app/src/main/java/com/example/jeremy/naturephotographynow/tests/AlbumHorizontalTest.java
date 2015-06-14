@@ -13,6 +13,7 @@ import com.example.jeremy.naturephotographynow.gallery.Thumbnail;
 public class AlbumHorizontalTest extends InstrumentationTestCase{
 
     public void testSetter(){
+
         Album album = new Album();
         Thumbnail testThumbnail = new Thumbnail();
         testThumbnail.setUrl("http://google.com/");
