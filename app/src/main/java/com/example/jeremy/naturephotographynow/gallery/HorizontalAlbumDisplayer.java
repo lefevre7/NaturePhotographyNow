@@ -10,6 +10,10 @@ public class HorizontalAlbumDisplayer extends AlbumDisplayer {
 
     @Override
     public String display() {
-        return null;
+        String toReturn = "";
+        for(Gallery gallery : this.getAlbum().galleries){
+            toReturn += gallery.getName() + " ";
+        }
+        return toReturn;
     }
 }

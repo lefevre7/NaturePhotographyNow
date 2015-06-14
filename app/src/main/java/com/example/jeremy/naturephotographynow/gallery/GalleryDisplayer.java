@@ -11,4 +11,12 @@ public abstract class GalleryDisplayer {
     }
 
     public abstract String display();
+
+    public Gallery getGallery() {
+        return gallery;
+    }
+
+    public void setGallery(Gallery gallery) {
+        this.gallery = gallery;
+    }
 }

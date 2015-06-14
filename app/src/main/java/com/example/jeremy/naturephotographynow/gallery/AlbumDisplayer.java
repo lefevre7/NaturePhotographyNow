@@ -11,4 +11,12 @@ public abstract class AlbumDisplayer {
     }
 
     public abstract String display();
+
+    public Album getAlbum() {
+        return album;
+    }
+
+    public void setAlbum(Album album) {
+        this.album = album;
+    }
 }

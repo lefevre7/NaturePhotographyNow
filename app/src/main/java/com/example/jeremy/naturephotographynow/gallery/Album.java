@@ -1,5 +1,6 @@
 package com.example.jeremy.naturephotographynow.gallery;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -8,13 +9,18 @@ import java.util.List;
 public class Album {
     List<Gallery> galleries;
     AlbumDisplayer displayer;
+    Thumbnail thumbnail;
+
+    public Album(){
+        galleries = new ArrayList<Gallery>();
+    }
 
     public void populate(){
-
+        galleries.add(new Gallery());
     }
 
     public void addGalleryToList(Gallery toAdd){
-
+        galleries.add(toAdd);
     }
 
     public AlbumDisplayer getDisplayer() {
@@ -25,4 +31,11 @@ public class Album {
         this.displayer = displayer;
     }
 
+    public Thumbnail getThumbnail() {
+        return thumbnail;
+    }
+
+    public void setThumbnail(Thumbnail thumbnail) {
+        this.thumbnail = thumbnail;
+    }
 }
