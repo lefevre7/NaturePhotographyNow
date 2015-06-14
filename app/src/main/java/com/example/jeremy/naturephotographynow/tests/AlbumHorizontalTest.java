@@ -13,7 +13,6 @@ import com.example.jeremy.naturephotographynow.gallery.Thumbnail;
 public class AlbumHorizontalTest extends InstrumentationTestCase{
 
     public void testSetter(){
-
         Album album = new Album();
         Thumbnail testThumbnail = new Thumbnail();
         testThumbnail.setUrl("http://google.com/");
@@ -25,12 +24,12 @@ public class AlbumHorizontalTest extends InstrumentationTestCase{
         Album album = new Album();
         album.setDisplayer(new HorizontalAlbumDisplayer(album));
         Gallery gallery1 = new Gallery();
-        gallery1.setName("Texas");
+        gallery1.setName("Nevada");
         Gallery gallery2 = new Gallery();
-        gallery2.setName("Idaho");
+        gallery2.setName("Utah");
         album.addGalleryToList(gallery1);
         album.addGalleryToList(gallery2);
-        assertEquals("Texas Idaho ", album.getDisplayer().display());
+        assertEquals("Nevada Utah ", album.getDisplayer().display());
     }
 
 }
