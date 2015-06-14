@@ -24,12 +24,12 @@ public class AlbumVerticalTest extends InstrumentationTestCase{
         Album album = new Album();
         album.setDisplayer(new VerticalAlbumDisplayer(album));
         Gallery gallery1 = new Gallery();
-        gallery1.setName("Texas");
+        gallery1.setName("Arizona");
         Gallery gallery2 = new Gallery();
-        gallery2.setName("Idaho");
+        gallery2.setName("Colorado");
         album.addGalleryToList(gallery1);
         album.addGalleryToList(gallery2);
-        assertEquals("Texas\nIdaho\n", album.getDisplayer().display());
+        assertEquals("Arizona\nColorado\n", album.getDisplayer().display());
     }
 
 }
