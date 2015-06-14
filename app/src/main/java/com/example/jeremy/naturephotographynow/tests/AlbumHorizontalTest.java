@@ -8,7 +8,7 @@ import com.example.jeremy.naturephotographynow.gallery.HorizontalAlbumDisplayer;
 import com.example.jeremy.naturephotographynow.gallery.Thumbnail;
 
 /**
- * Created by Mezzo on 6/12/2015.
+ * Created by Jeremy on 6/12/2015.
  */
 public class AlbumHorizontalTest extends InstrumentationTestCase{
 
