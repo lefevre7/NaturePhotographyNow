@@ -13,12 +13,11 @@ import com.example.jeremy.naturephotographynow.gallery.Thumbnail;
 public class AlbumHorizontalTest extends InstrumentationTestCase{
 
     public void testSetter(){
-
         Album album = new Album();
         Thumbnail testThumbnail = new Thumbnail();
-        testThumbnail.setUrl("http://google.com/");
+        testThumbnail.setUrl("http://yahoo.com/");
         album.setThumbnail(testThumbnail);
-        assertEquals("http://google.com/", album.getThumbnail().getUrl());
+        assertEquals("http://yahoo.com/", album.getThumbnail().getUrl());
     }
 
     public void testDisplay(){

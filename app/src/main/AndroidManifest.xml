@@ -16,6 +16,86 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activity.MainActivity2"
+            android:label="@string/title_activity_main_activity2" >
+        </activity>
+        <activity
+            android:name=".activity.picutre"
+            android:label="@string/title_activity_picutre" >
+        </activity>
+        <activity
+            android:name=".activity.callendar"
+            android:label="@string/title_activity_callendar" >
+        </activity>
+        <activity
+            android:name=".activity.blog"
+            android:label="@string/title_activity_blog" >
+        </activity>
+        <activity
+            android:name=".activity.newsletter"
+            android:label="@string/title_activity_newsletter" >
+        </activity>
+        <activity
+            android:name=".activity.contact_the_artist"
+            android:label="@string/title_activity_contact_the_artist" >
+        </activity>
+        <activity
+            android:name=".activity.about_the_artist"
+            android:label="@string/title_activity_about_the_artist" >
+        </activity>
+        <activity
+            android:name=".activity.artists_resume"
+            android:label="@string/title_activity_artists_resume" >
+        </activity>
+        <activity
+            android:name=".activity.invest"
+            android:label="@string/title_activity_invest" >
+        </activity>
+        <activity
+            android:name=".activity.our_services"
+            android:label="@string/title_activity_our_services" >
+        </activity>
+        <activity
+            android:name=".activity.about_download"
+            android:label="@string/title_activity_about_download" >
+        </activity>
+        <activity
+            android:name=".activity.download"
+            android:label="@string/title_activity_download" >
+        </activity>
+        <activity
+            android:name=".activity.product_info"
+            android:label="@string/title_activity_product_info" >
+        </activity>
+        <activity
+            android:name=".activity.workshops"
+            android:label="@string/title_activity_workshops" >
+        </activity>
+        <activity
+            android:name=".activity.books"
+            android:label="@string/title_activity_books" >
+        </activity>
+        <activity
+            android:name=".activity.client_viewing"
+            android:label="@string/title_activity_client_viewing" >
+        </activity>
+        <activity
+            android:name=".activity.testimonials"
+            android:label="@string/title_activity_testimonials" >
+        </activity>
+        <activity
+            android:name=".activity.guarantee"
+            android:label="@string/title_activity_guarantee" >
+        </activity>
+        <activity
+            android:name=".activity.model_release"
+            android:label="@string/title_activity_model_release" >
+        </activity>
+        <activity
+            android:name=".activity.terms_of_use"
+            android:label="@string/title_activity_terms_of_use" >
+        </activity>
     </application>
 
 </manifest>
