@@ -42,7 +42,10 @@ public class MainActivity extends ActionBarActivity {
     //might learn how to do more from: http://www.101apps.co.za/articles/drawer-navigation.html
     //or maybe: http://www.recursiverobot.com/post/59404388046/implementing-the-new-navigation-drawer-in-android
     private void addDrawerItems() {
-        String[] osArray = { "Android", "iOS", "Windows", "OS X", "Linux" };
+        String[] osArray = { "Blog", "Newsletter", "Contact the Artist", "About the Artist", "Artist's Resume",
+                "Invest in Fine Art Photography", "Our Services", "About Download Doc", "Download Doc",
+                "Product Information", "Workshops", "Books by the Artist", "Client Viewing", "Testimonials",
+                "Guarantee", "Model Release", "Terms of Use"};
         mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, osArray);
         mDrawerList.setAdapter(mAdapter);
 
