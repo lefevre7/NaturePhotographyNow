@@ -96,6 +96,18 @@
             android:name=".activity.terms_of_use"
             android:label="@string/title_activity_terms_of_use" >
         </activity>
+        <activity
+            android:name=".activity.WebActivity"
+            android:label="@string/title_activity_web" >
+        </activity>
+        <activity
+            android:name=".activity.GalleryActivity"
+            android:label="@string/title_activity_gallery" >
+        </activity>
+        <activity
+            android:name=".activity.EventsActivity"
+            android:label="@string/title_activity_events" >
+        </activity>
     </application>
 
 </manifest>

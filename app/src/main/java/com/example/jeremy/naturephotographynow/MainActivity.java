@@ -1,6 +1,7 @@
 package com.example.jeremy.naturephotographynow;
 
 //base code from https://github.com/treehouse/android-navigation-drawer-final/blob/master/app/src/main/java/com/teamtreehouse/oslist/MainActivity.java
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -13,6 +14,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.example.jeremy.naturephotographynow.activity.EventsActivity;
+import com.example.jeremy.naturephotographynow.activity.GalleryActivity;
+import com.example.jeremy.naturephotographynow.activity.WebActivity;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -42,17 +47,37 @@ public class MainActivity extends ActionBarActivity {
     //might learn how to do more from: http://www.101apps.co.za/articles/drawer-navigation.html
     //or maybe: http://www.recursiverobot.com/post/59404388046/implementing-the-new-navigation-drawer-in-android
     private void addDrawerItems() {
-        String[] osArray = { "Blog", "Newsletter", "Contact the Artist", "About the Artist", "Artist's Resume",
+        final String[] listArray = { "Gallery", "Events", "Blog", "Newsletter", "Contact the Artist", "About the Artist", "Artist's Resume",
                 "Invest in Fine Art Photography", "Our Services", "About Download Doc", "Download Doc",
                 "Product Information", "Workshops", "Books by the Artist", "Client Viewing", "Testimonials",
                 "Guarantee", "Model Release", "Terms of Use"};
-        mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, osArray);
+        mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listArray);
         mDrawerList.setAdapter(mAdapter);
 
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(MainActivity.this, "Time for an upgrade!", Toast.LENGTH_SHORT).show();
+                String selection = listArray[(int)id];
+                Intent intent;
+                switch(selection){
+                    case "Gallery":
+                        //change to Gallery activity
+                        intent = new Intent(parent.getContext(), GalleryActivity.class);
+                        break;
+
+                    case "Events":
+                        //change to blog activity
+                        intent = new Intent(parent.getContext(), EventsActivity.class);
+                        break;
+
+                    default:
+                        //change to webview activity and pass in selection
+                        intent = new Intent(parent.getContext(), WebActivity.class);
+                        intent.putExtra("MenuSelection", selection);
+                        break;
+                }
+                startActivity(intent);
+                //Toast.makeText(MainActivity.this, "Time for an upgrade!", Toast.LENGTH_SHORT).show();
             }
         });
     }

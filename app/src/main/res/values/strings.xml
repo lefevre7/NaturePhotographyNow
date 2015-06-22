@@ -45,5 +45,8 @@
     <string name="title_activity_guarantee">guarantee</string>
     <string name="title_activity_model_release">model_release</string>
     <string name="title_activity_terms_of_use">terms_of_use</string>
+    <string name="title_activity_web">WebActivity</string>
+    <string name="title_activity_gallery">GalleryActivity</string>
+    <string name="title_activity_events">EventsActivity</string>
 
 </resources>
