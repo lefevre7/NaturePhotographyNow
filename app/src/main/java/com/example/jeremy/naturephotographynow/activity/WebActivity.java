@@ -43,6 +43,11 @@ public class WebActivity extends ActionBarActivity {
             case "Our Services":
                 urlToLoad = "http://www.naturephotographynow.com/#/page/our-services/";
                 break;
+            case "Download Doc":
+                urlToLoad = "http://www.naturephotographynow.com/#/page/about-download-dock/";
+                Toast.makeText(WebActivity.this, "Click \"Customer Service\" on the top of the screen," +
+                        "then Download Doc on the dropdown menu.", Toast.LENGTH_SHORT).show();
+                break;
             case "About Download Doc":
                 urlToLoad = "http://www.naturephotographynow.com/#/page/about-download-dock/";
                 break;
