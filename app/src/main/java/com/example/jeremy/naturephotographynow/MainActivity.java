@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.Handler;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -78,141 +80,126 @@ public class MainActivity extends ActionBarActivity {
                         startActivity(intent);
                         break;
                     case "Blog":
-                        //String url = "http://www.naturephotographynow.com/";
-                        //Intent i = new Intent(Intent.ACTION_VIEW);
-                        //i.setData(Uri.parse(url));
-                        //startActivity(i);
-                        System.out.println("Here\n\n");
-                        Toast.makeText(MainActivity.this, "Click \"[Navigation Menu]\", then \"Blog\" on the " +
-                                "top of the screen.", Toast.LENGTH_LONG).show();
+                        //change to the "Blog" web page
+                        final Toast toast = Toast.makeText(MainActivity.this, "Click \"[Navigation Menu]\", then \"Blog\" on the " +
+                                "top of the screen.", Toast.LENGTH_LONG);
+                        toast.show();
+
+                        //make the Toast show for 5 seconds
+                        new CountDownTimer(5000, 1000)
+                        {
+                            public void onTick(long millisUntilFinished) {toast.show();}
+                            public void onFinish() {toast.show();}
+
+                        }.start();
+
                         uri = Uri.parse("http://www.naturephotographynow.com/");
                         intent = new Intent(Intent.ACTION_VIEW, uri);
                         startActivity(intent);
-
-
-                        //urlToLoad = "http://www.naturephotographynow.com/";
-                        //myWebView.loadUrl(urlToLoad);
                         break;
                     case "Newsletter":
+                        //change to the "Newsletter" web page
                         System.out.println("Here2");
                         uri = Uri.parse("http://www.naturephotographynow.com/#/page/news-letter/");
                         intent = new Intent(Intent.ACTION_VIEW, uri);
                         startActivity(intent);
-                        //urlToLoad = "http://www.naturephotographynow.com/#/page/news-letter/";
-                        //myWebView.loadUrl(urlToLoad);
                         break;
                     case "Contact the Artist":
                         uri = Uri.parse("http://www.naturephotographynow.com/#/page/contact-the-artist/");
                         intent = new Intent(Intent.ACTION_VIEW, uri);
                         startActivity(intent);
-                        //urlToLoad = "http://www.naturephotographynow.com/#/page/contact-the-artist/";
-                        //myWebView.loadUrl(urlToLoad);
                         break;
                     case "About the Artist":
                         uri = Uri.parse("http://www.naturephotographynow.com/#/page/about-the-artist/");
                         intent = new Intent(Intent.ACTION_VIEW, uri);
                         startActivity(intent);
-                        //urlToLoad = "http://www.naturephotographynow.com/#/page/about-the-artist/";
-                        //myWebView.loadUrl(urlToLoad);
                         break;
                     case "Artist's Resume":
                         uri = Uri.parse("http://www.naturephotographynow.com/#/page/artists-resume/");
                         intent = new Intent(Intent.ACTION_VIEW, uri);
                         startActivity(intent);
-                        //urlToLoad = "http://www.naturephotographynow.com/#/page/artists-resume/";
-                        //myWebView.loadUrl(urlToLoad);
                         break;
                     case "Invest in Fine Art Photography":
                         uri = Uri.parse("http://www.naturephotographynow.com/#/page/invest-in-fine-art-photography/");
                         intent = new Intent(Intent.ACTION_VIEW, uri);
                         startActivity(intent);
-                        //urlToLoad = "http://www.naturephotographynow.com/#/page/invest-in-fine-art-photography/";
-                        //myWebView.loadUrl(urlToLoad);
                         break;
                     case "Our Services":
                         uri = Uri.parse("http://www.naturephotographynow.com/#/page/our-services/");
                         intent = new Intent(Intent.ACTION_VIEW, uri);
                         startActivity(intent);
-                        //urlToLoad = "http://www.naturephotographynow.com/#/page/our-services/";
-                        //myWebView.loadUrl(urlToLoad);
                         break;
                     case "Download Doc":
-                        Toast.makeText(MainActivity.this, "Click  \"[Navigation Menu]\", then \"Download Doc\"" +
-                                " on the top of the screen under \"Customer Service\", on the dropdown menu.",
-                                Toast.LENGTH_LONG).show();
+                        final Toast toast2 = Toast.makeText(MainActivity.this, "Click  \"[Navigation Menu]\", then \"Download Doc\"" +
+                                " on the top of the screen under \"Customer Service\", on the dropdown menu.", Toast.LENGTH_LONG);
+                        toast2.show();
+
+                        //make the Toast show for 7 seconds
+                        new CountDownTimer(7000, 1000)
+                        {
+                            public void onTick(long millisUntilFinished) {toast2.show();}
+                            public void onFinish() {toast2.show();}
+
+                        }.start();
+
                         uri = Uri.parse("http://www.naturephotographynow.com/");
                         intent = new Intent(Intent.ACTION_VIEW, uri);
                         startActivity(intent);
-                        //urlToLoad = "http://www.naturephotographynow.com/#/page/about-download-dock/";
-                        //myWebView.loadUrl(urlToLoad);
                         break;
                     case "About Download Doc":
                         uri = Uri.parse("http://www.naturephotographynow.com/#/page/about-download-dock/");
                         intent = new Intent(Intent.ACTION_VIEW, uri);
                         startActivity(intent);
-                        //urlToLoad = "http://www.naturephotographynow.com/#/page/about-download-dock/";
-                        //myWebView.loadUrl(urlToLoad);
                         break;
                     case "Product Information":
                         uri = Uri.parse("http://www.naturephotographynow.com/#/page/product-information/");
                         intent = new Intent(Intent.ACTION_VIEW, uri);
                         startActivity(intent);
-                        //urlToLoad = "http://www.naturephotographynow.com/#/page/product-information/";
                         break;
                     case "Workshops":
                         uri = Uri.parse("http://www.naturephotographynow.com/#/page/workshops/");
                         intent = new Intent(Intent.ACTION_VIEW, uri);
                         startActivity(intent);
-                        //urlToLoad = "http://www.naturephotographynow.com/#/page/workshops/";
                         break;
                     case "Books by the Artist":
                         uri = Uri.parse("http://www.naturephotographynow.com/#/page/books-by-the-artist/");
                         intent = new Intent(Intent.ACTION_VIEW, uri);
                         startActivity(intent);
-                        //urlToLoad = "http://www.naturephotographynow.com/#/page/books-by-the-artist/";
                         break;
                     case "Client Viewing":
                         uri = Uri.parse("http://www.naturephotographynow.com/#/page/client-viewing/");
                         intent = new Intent(Intent.ACTION_VIEW, uri);
                         startActivity(intent);
-                        //urlToLoad = "http://www.naturephotographynow.com/#/page/client-viewing/";
                         break;
                     case "Testimonials":
                         uri = Uri.parse("http://www.naturephotographynow.com/#/page/workshops/");
                         intent = new Intent(Intent.ACTION_VIEW, uri);
                         startActivity(intent);
-                        //urlToLoad = "http://www.naturephotographynow.com/#/page/testimonials/";
                         break;
                     case "Guarantee":
                         uri = Uri.parse("http://www.naturephotographynow.com/#/page/guarantee/");
                         intent = new Intent(Intent.ACTION_VIEW, uri);
                         startActivity(intent);
-                        //urlToLoad = "http://www.naturephotographynow.com/#/page/guarantee/";
                         break;
                     case "Model Release":
                         uri = Uri.parse("http://www.naturephotographynow.com/#/page/model-release/");
                         intent = new Intent(Intent.ACTION_VIEW, uri);
                         startActivity(intent);
-                        //urlToLoad = "http://www.naturephotographynow.com/#/page/model-release/";
                         break;
                     case "Terms of Use":
                         uri = Uri.parse("http://www.naturephotographynow.com/#/page/terms-of-use/");
                         intent = new Intent(Intent.ACTION_VIEW, uri);
                         startActivity(intent);
-                        //urlToLoad = "http://www.naturephotographynow.com/#/page/terms-of-use/";
                         break;
 
                     default:
                         try {
                         Log.i("MainActivityTag", "Trying to sep into a web activity that is not defined.");
-                        //change to webview activity and pass in selection
+                        //a different way to change to a web activity
                             String url = "http://www.naturephotographynow.com/";
                             Intent i = new Intent(Intent.ACTION_VIEW);
                             i.setData(Uri.parse(url));
                             startActivity(i);
-                        //intent = new Intent(parent.getContext(), WebActivity.class);
-                        //intent.putExtra("MenuSelection", selection);
-                        //startActivity(intent);
                         break;
                         }
 
@@ -223,8 +210,6 @@ public class MainActivity extends ActionBarActivity {
 
                         }
                 }
-
-                //Toast.makeText(MainActivity.this, "Time for an upgrade!", Toast.LENGTH_SHORT).show();
             }
         });
     }

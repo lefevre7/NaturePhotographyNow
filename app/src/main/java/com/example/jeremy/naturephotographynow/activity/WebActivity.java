@@ -26,18 +26,10 @@ public class WebActivity extends ActionBarActivity {
         try {
             switch(String.valueOf(intent.getStringExtra("Menu Selection"))){
                 case "Blog":
-                    String url = "http://www.naturephotographynow.com/";
-                    Intent i = new Intent(Intent.ACTION_VIEW);
-                    i.setData(Uri.parse(url));
-                    startActivity(i);
-                   // Uri uri = Uri.parse("http://www.naturephotographynow.com/");
-                    //Intent intent2 = new Intent(Intent.ACTION_VIEW, uri);
-                    //startActivity(intent2);
-
                     System.out.println("Here\n\n");
                     Toast.makeText(WebActivity.this, "Click \"Blog\" on the top of the screen.", Toast.LENGTH_LONG).show();
-                    //urlToLoad = "http://www.naturephotographynow.com/";
-                    //myWebView.loadUrl(urlToLoad);
+                    urlToLoad = "http://www.naturephotographynow.com/";
+                    myWebView.loadUrl(urlToLoad);
                     break;
                 case "Newsletter":
                     System.out.println("Here");
