@@ -12,8 +12,14 @@ import android.widget.Toast;
 
 import com.example.jeremy.naturephotographynow.R;
 
+/**
+ * Opens a WebView of an activity that was passed into the intent
+ */
 public class WebActivity extends ActionBarActivity {
     public static final String WEBTAG = "WebActivity";
+    /**
+     * Opens a WebView of an activity that was passed into the intent
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

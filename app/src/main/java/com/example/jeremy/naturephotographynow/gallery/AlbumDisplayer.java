@@ -8,6 +8,7 @@ import com.example.jeremy.naturephotographynow.MainActivity;
 
 /**
  * Created by Mezzo on 6/10/2015.
+ * An abstract class to display an Album.
  */
 public abstract class AlbumDisplayer {
     private Album album;

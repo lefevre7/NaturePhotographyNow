@@ -1,6 +1,5 @@
 package com.example.jeremy.naturephotographynow;
 
-//base code from https://github.com/treehouse/android-navigation-drawer-final/blob/master/app/src/main/java/com/teamtreehouse/oslist/MainActivity.java
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;
@@ -35,8 +34,13 @@ public class MainActivity extends ActionBarActivity {
     private ArrayAdapter<String> mAdapter;
     private ActionBarDrawerToggle mDrawerToggle;
     private String mActivityTitle;
+    /** A tag for logging purposes */
     public static final String MAINTAG = "MainActivityTag";
 
+    /**
+     * Sets the variables and Navigation Drawer
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +70,13 @@ public class MainActivity extends ActionBarActivity {
         mDrawerList.setAdapter(mAdapter);
 
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            /**
+             * When the user clicks on an activity, s/he is taken to it.
+             * @param parent
+             * @param view
+             * @param position
+             * @param id
+             */
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String selection = listArray[(int) id];
@@ -90,12 +101,19 @@ public class MainActivity extends ActionBarActivity {
                                 "top of the screen.", Toast.LENGTH_LONG);
                         toast.show();
 
-                        //make the Toast show for 5 seconds
+                        /** Make the Toast show for 5 seconds */
                         new CountDownTimer(5000, 1000) {
+                            /**
+                             * Shows the toast message for millisUntilFinished
+                             * @param millisUntilFinished
+                             */
                             public void onTick(long millisUntilFinished) {
                                 toast.show();
                             }
 
+                            /**
+                             * Shows the toast message until it's finished
+                             */
                             public void onFinish() {
                                 toast.show();
                             }
@@ -143,12 +161,19 @@ public class MainActivity extends ActionBarActivity {
                                 " on the top of the screen under \"Customer Service\", on the dropdown menu.", Toast.LENGTH_LONG);
                         toast2.show();
 
-                        //make the Toast show for 7 seconds
+                        /** Make the Toast show for 7 seconds */
                         new CountDownTimer(7000, 1000) {
+                            /**
+                             * Shows the toast message for millisUntilFinished
+                             * @param millisUntilFinished
+                             */
                             public void onTick(long millisUntilFinished) {
                                 toast2.show();
                             }
 
+                            /**
+                             * Shows the toast message until it's finished
+                             */
                             public void onFinish() {
                                 toast2.show();
                             }
