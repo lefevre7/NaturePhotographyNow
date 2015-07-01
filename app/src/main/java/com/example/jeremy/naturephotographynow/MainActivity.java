@@ -24,7 +24,10 @@ import com.example.jeremy.naturephotographynow.activity.GalleryActivity;
 import com.example.jeremy.naturephotographynow.activity.MainActivity2;
 import com.example.jeremy.naturephotographynow.activity.WebActivity;
 
-
+/**
+ * On startup, this activity creates a Navigation Drawer with a list of items,
+ * which, when clicked on, brings the user to a new activity.
+ */
 public class MainActivity extends ActionBarActivity {
 
     private ListView mDrawerList;
@@ -50,8 +53,10 @@ public class MainActivity extends ActionBarActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
     }
 
-    //might learn how to do more from: http://www.101apps.co.za/articles/drawer-navigation.html
-    //or maybe: http://www.recursiverobot.com/post/59404388046/implementing-the-new-navigation-drawer-in-android
+    /**
+     * Creates a navigation list, adds items to it, and has a switch statement that starts a uri
+     * or other activity.
+     */
     private void addDrawerItems() {
         final String[] listArray = { "Gallery", "Events", "Blog", "Newsletter", "Contact the Artist", "About the Artist", "Artist's Resume",
                 "Invest in Fine Art Photography", "Our Services", "About Download Doc", "Download Doc",
@@ -63,11 +68,11 @@ public class MainActivity extends ActionBarActivity {
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String selection = listArray[(int)id];
+                String selection = listArray[(int) id];
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 Uri uri;
                 Log.i("MainActivityTag", "Opening an Activity.");
-                switch(selection){
+                switch (selection) {
                     case "Gallery":
                         //change to Gallery activity
                         intent = new Intent(parent.getContext(), GalleryActivity.class);
@@ -86,10 +91,14 @@ public class MainActivity extends ActionBarActivity {
                         toast.show();
 
                         //make the Toast show for 5 seconds
-                        new CountDownTimer(5000, 1000)
-                        {
-                            public void onTick(long millisUntilFinished) {toast.show();}
-                            public void onFinish() {toast.show();}
+                        new CountDownTimer(5000, 1000) {
+                            public void onTick(long millisUntilFinished) {
+                                toast.show();
+                            }
+
+                            public void onFinish() {
+                                toast.show();
+                            }
 
                         }.start();
 
@@ -135,10 +144,14 @@ public class MainActivity extends ActionBarActivity {
                         toast2.show();
 
                         //make the Toast show for 7 seconds
-                        new CountDownTimer(7000, 1000)
-                        {
-                            public void onTick(long millisUntilFinished) {toast2.show();}
-                            public void onFinish() {toast2.show();}
+                        new CountDownTimer(7000, 1000) {
+                            public void onTick(long millisUntilFinished) {
+                                toast2.show();
+                            }
+
+                            public void onFinish() {
+                                toast2.show();
+                            }
 
                         }.start();
 
@@ -194,16 +207,14 @@ public class MainActivity extends ActionBarActivity {
 
                     default:
                         try {
-                        Log.i("MainActivityTag", "Trying to sep into a web activity that is not defined.");
-                        //a different way to change to a web activity
+                            Log.i("MainActivityTag", "Trying to sep into a web activity that is not defined.");
+                            //a different way to change to a web activity
                             String url = "http://www.naturephotographynow.com/";
                             Intent i = new Intent(Intent.ACTION_VIEW);
                             i.setData(Uri.parse(url));
                             startActivity(i);
-                        break;
-                        }
-
-                        catch(Exception e) {
+                            break;
+                        } catch (Exception e) {
                             Log.e("MainActivityTag", "Could not go into web activity.", e);
 
                             Toast.makeText(MainActivity.this, "Error with this Web Activity, push the back button", Toast.LENGTH_SHORT).show();
@@ -236,13 +247,20 @@ public class MainActivity extends ActionBarActivity {
         mDrawerLayout.setDrawerListener(mDrawerToggle);
     }
 
+    /**
+     * Sync the toggle state after onRestoreInstanceState has happened.
+     * @param savedInstanceState
+     */
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        // Sync the toggle state after onRestoreInstanceState has occurred.
         mDrawerToggle.syncState();
     }
 
+    /**
+     * Change the Drawer when the configuration is changed.
+     * @param newConfig
+     */
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
@@ -256,6 +274,11 @@ public class MainActivity extends ActionBarActivity {
         return true;
     }
 
+    /**
+     *
+     * @param item
+     * @return true if an item on the drawer is selected
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will

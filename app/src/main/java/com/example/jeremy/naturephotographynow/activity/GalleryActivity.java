@@ -12,10 +12,19 @@ import android.widget.Toast;
 
 import com.example.jeremy.naturephotographynow.R;
 
+/**
+ * Creates (will obtain) a list (that will be images, but right now is an example)
+ * and puts them into an adapter to display
+ */
 public class GalleryActivity extends ActionBarActivity {
 
     ListView listView;
 
+    /**
+     * Creates (will obtain) a list (that will be images, but right now is an example)
+     * and puts them into an adapter to display
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +61,13 @@ public class GalleryActivity extends ActionBarActivity {
         // ListView Item Click Listener
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
+            /**
+             * When clicked on, the user is taken to an individual gallery.
+             * @param parent
+             * @param view
+             * @param position
+             * @param id
+             */
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
