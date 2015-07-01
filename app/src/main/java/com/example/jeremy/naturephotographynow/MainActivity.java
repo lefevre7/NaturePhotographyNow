@@ -56,7 +56,7 @@ public class MainActivity extends ActionBarActivity {
         final String[] listArray = { "Gallery", "Events", "Blog", "Newsletter", "Contact the Artist", "About the Artist", "Artist's Resume",
                 "Invest in Fine Art Photography", "Our Services", "About Download Doc", "Download Doc",
                 "Product Information", "Workshops", "Books by the Artist", "Client Viewing", "Testimonials",
-                "Guarantee", "Model Release", "Terms of Use"};
+                "Guarantee", "Model Release", "Terms of Use", "Go to Website"};
         mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listArray);
         mDrawerList.setAdapter(mAdapter);
 
@@ -75,7 +75,7 @@ public class MainActivity extends ActionBarActivity {
                         break;
 
                     case "Events":
-                        //change to blog activity
+                        //change to Events activity
                         intent = new Intent(parent.getContext(), EventsActivity.class);
                         startActivity(intent);
                         break;
