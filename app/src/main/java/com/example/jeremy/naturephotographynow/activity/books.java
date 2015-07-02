@@ -11,9 +11,20 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
-
+/**
+ * Will connect to the books-by-the-artist page of www.naturephotographynow.com/ when called.
+ */
 public class books extends ActionBarActivity {
+    /**
+     * Will connect to the books-by-the-artist page of www.naturephotographynow.com/ when the
+     * books class is called.
+     */
     public static class URLConnectionReader {
+        /**
+         * Main method
+         * @param args
+         * @throws Exception
+         */
         public static void main(String[] args) throws Exception {
             URL oracle = new URL("http://www.naturephotographynow.com/#/page/books-by-the-artist/");
             URLConnection yc = oracle.openConnection();

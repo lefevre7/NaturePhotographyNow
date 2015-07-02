@@ -7,6 +7,10 @@ import android.view.MenuItem;
 
 import com.example.jeremy.naturephotographynow.R;
 
+/**
+ * Holds a list of events created by the Artist and can pass them to the calendar on the user's
+ * phone.
+ */
 public class EventsActivity extends ActionBarActivity {
 
     @Override

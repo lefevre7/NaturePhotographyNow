@@ -12,8 +12,20 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 
+/**
+ * Will connect to the model-release page of www.naturephotographynow.com/ when called.
+ */
 public class model_release extends ActionBarActivity {
+    /**
+     * Will connect to the model-release page of www.naturephotographynow.com/ when the
+     * model_release class is called.
+     */
     public static class URLConnectionReader {
+        /**
+         * Main method
+         * @param args
+         * @throws Exception
+         */
         public static void main(String[] args) throws Exception {
             URL oracle = new URL("http://www.naturephotographynow.com/#/page/model-release/");
             URLConnection yc = oracle.openConnection();

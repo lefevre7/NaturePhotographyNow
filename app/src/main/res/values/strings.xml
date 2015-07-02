@@ -26,8 +26,7 @@
 
     <!-- Content Description -->
     <string name="desc_list_item_icon">Item Icon</string>
-    <string name="title_activity_picutre">picutre</string>
-    <string name="title_activity_callendar">callendar</string>
+    <string name="title_activity_calendar">callendar</string>
     <string name="title_activity_blog">blog</string>
     <string name="title_activity_newsletter">newsletter</string>
     <string name="title_activity_contact_the_artist">contact_the_artist</string>

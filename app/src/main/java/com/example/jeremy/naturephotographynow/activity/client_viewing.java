@@ -11,9 +11,20 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
-
+/**
+ * Will connect to the client-viewing page of www.naturephotographynow.com/ when called.
+ */
 public class client_viewing extends ActionBarActivity {
+    /**
+     * Will connect to the client-viewing page of www.naturephotographynow.com/ when the
+     * client_viewing class is called.
+     */
     public static class URLConnectionReader {
+        /**
+         * Main method
+         * @param args
+         * @throws Exception
+         */
         public static void main(String[] args) throws Exception {
             URL oracle = new URL("http://www.naturephotographynow.com/#/page/client-viewing/");
             URLConnection yc = oracle.openConnection();

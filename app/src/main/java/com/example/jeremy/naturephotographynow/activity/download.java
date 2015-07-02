@@ -11,10 +11,21 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
-
+/**
+ * Will connect www.naturephotographynow.com/ when called.
+ */
 public class download extends ActionBarActivity {
     //have a text box that pops up that just says: go to website, and give them the link:
+    /**
+     * Will connect to www.naturephotographynow.com/ when the
+     * download class is called.
+     */
     public static class URLConnectionReader {
+        /**
+         * Main method
+         * @param args
+         * @throws Exception
+         */
         public static void main(String[] args) throws Exception {
             URL oracle = new URL("http://www.naturephotographynow.com/");
             URLConnection yc = oracle.openConnection();

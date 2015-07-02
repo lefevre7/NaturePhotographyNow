@@ -5,6 +5,7 @@ import java.util.List;
 
 /**
  * Created by Mezzo on 6/10/2015.
+ * Contains a list of Galleries.
  */
 public class Album {
     List<Gallery> galleries;

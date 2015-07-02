@@ -11,9 +11,20 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
-
+/**
+ * Will connect to the news-letter page of www.naturephotographynow.com/ when called.
+ */
 public class newsletter extends ActionBarActivity {
+    /**
+     * Will connect to the news-letter page of www.naturephotographynow.com/ when the
+     * newsletter class is called.
+     */
     public static class URLConnectionReader {
+        /**
+         * Main method
+         * @param args
+         * @throws Exception
+         */
         public static void main(String[] args) throws Exception {
             URL oracle = new URL("http://www.naturephotographynow.com/#/page/news-letter/");
             URLConnection yc = oracle.openConnection();
