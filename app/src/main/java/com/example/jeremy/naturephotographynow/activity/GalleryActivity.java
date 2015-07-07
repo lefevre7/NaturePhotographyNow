@@ -1,12 +1,15 @@
 package com.example.jeremy.naturephotographynow.activity;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -17,6 +20,9 @@ import com.example.jeremy.naturephotographynow.R;
  * and puts them into an adapter to display
  */
 public class GalleryActivity extends ActionBarActivity {
+
+    /** A tag for logging purposes */
+    public static final String GalTAG = "GalleryActivityTag";
 
     ListView listView;
 
@@ -82,6 +88,29 @@ public class GalleryActivity extends ActionBarActivity {
                 Toast.makeText(getApplicationContext(),
                         "Position :" + itemPosition + "  ListItem : " + itemValue, Toast.LENGTH_LONG)
                         .show();
+                //public void handleButtonClick(View view) {
+                    Intent intent = new Intent(parent.getContext(), PictureActivity.class);
+                    /*EditText editText1 = (EditText) findViewById(R.id.Book);
+                    EditText editText2 = (EditText) findViewById(R.id.Chapter);
+                    EditText editText3 = (EditText) findViewById(R.id.Verse);
+
+                    String book = editText1.getText().toString();
+                    String chapter = editText2.getText().toString();
+                    String verse = editText3.getText().toString();*/
+
+                    intent.putExtra("theString", itemValue);
+
+                    //intent.putExtra("theBook", book);
+                    //intent.putExtra("theChapter", chapter);
+                    //intent.putExtra("theVerse", verse);
+                    Log.i("GalleryActivityTag", "Trying to open PictureActivity.");
+                    try {
+                        startActivity(intent);
+                    }
+                    catch(Exception e) {
+                        Log.e("GalleryActivityTag", "PictureActivity has stopped");
+                        e.printStackTrace();
+                }
 
             }
 
@@ -109,4 +138,5 @@ public class GalleryActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }

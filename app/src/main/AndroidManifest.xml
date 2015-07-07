@@ -104,6 +104,10 @@
             android:name=".activity.EventsActivity"
             android:label="@string/title_activity_events" >
         </activity>
+        <activity
+            android:name=".activity.PictureActivity"
+            android:label="@string/title_activity_picture" >
+        </activity>
     </application>
 
 </manifest>
