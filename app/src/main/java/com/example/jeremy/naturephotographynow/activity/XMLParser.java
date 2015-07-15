@@ -24,6 +24,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
+import android.os.StrictMode;
 import android.util.Log;
 
 public class XMLParser {
@@ -39,6 +40,13 @@ public class XMLParser {
      * */
     public String getXmlFromUrl(String url) {
         String xml = null;
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+
+            StrictMode.setThreadPolicy(policy);
+
+        }
 
         try {
             // defaultHttpClient
