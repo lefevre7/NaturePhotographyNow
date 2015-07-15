@@ -32,7 +32,7 @@ public class GalleryActivity extends ActionBarActivity {
     /** A tag for logging purposes */
     public static final String GalTAG = "GalleryActivityTag";
 
-    // All static variables
+    /*// All static variables
     static final String URL = "http://api.androidhive.info/music/music.xml";
     // XML node keys
     static final String KEY_SONG = "song"; // parent node
@@ -43,9 +43,9 @@ public class GalleryActivity extends ActionBarActivity {
     static final String KEY_THUMB_URL = "thumb_url";
 
     ListView list;
-    LazyAdapter adapter;
+    LazyAdapter adapter;*/
 
-    //ListView listView;
+    ListView listView;
 
     /**
      * Creates (will obtain) a list (that will be images, but right now is an example)
@@ -59,7 +59,7 @@ public class GalleryActivity extends ActionBarActivity {
         // Get ListView object from xml
         setContentView(R.layout.activity_gallery);
 
-        ArrayList<HashMap<String, String>> songsList = new ArrayList<HashMap<String, String>>();
+        /*ArrayList<HashMap<String, String>> songsList = new ArrayList<HashMap<String, String>>();
 
         XMLParser parser = new XMLParser();
         String xml = parser.getXmlFromUrl(URL); // getting XML from URL
@@ -85,9 +85,9 @@ public class GalleryActivity extends ActionBarActivity {
         list=(ListView)findViewById(R.id.list);
 
         // Getting adapter by passing xml data ArrayList
-        adapter=new LazyAdapter(this, songsList);
+        adapter=new LazyAdapter(this, songsList);*/
 
-        /*
+
 
         listView = (ListView) findViewById(R.id.list);
 
@@ -108,7 +108,7 @@ public class GalleryActivity extends ActionBarActivity {
                 "Panoramic",
                 "Nature's Patterns",
                 "Temples",
-                "Architechure",
+                "Architecture",
                 "Novelty",
                 "Wildlife",
                 "People"
@@ -128,12 +128,13 @@ public class GalleryActivity extends ActionBarActivity {
         listView.setAdapter(adapter);
 
         // ListView Item Click Listener
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {*/
-        // Assign adapter to ListView
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+        /*// Assign adapter to ListView
         list.setAdapter(adapter);
 
         // ListView Item Click Listener
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {*/
 
 
             /**
@@ -150,11 +151,11 @@ public class GalleryActivity extends ActionBarActivity {
                 // ListView Clicked item index
                 int itemPosition     = position;
 
-                /*// ListView Clicked item value
-                String  itemValue    = (String) listView.getItemAtPosition(position);*/
-
                 // ListView Clicked item value
-                String  itemValue    = (String) list.getItemAtPosition(position);
+                String  itemValue    = (String) listView.getItemAtPosition(position);
+
+                /*// ListView Clicked item value
+                String  itemValue    = (String) list.getItemAtPosition(position);*/
 
                 // Show Alert
                 Toast.makeText(getApplicationContext(),
