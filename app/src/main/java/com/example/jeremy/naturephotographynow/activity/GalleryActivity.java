@@ -1,6 +1,7 @@
 package com.example.jeremy.naturephotographynow.activity;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -41,14 +42,26 @@ public class GalleryActivity extends ActionBarActivity {
         listView = (ListView) findViewById(R.id.list);
 
         // Defined Array values to show in ListView
-        String[] values = new String[] { "Android List View",
-                "Adapter implementation",
-                "Simple List View In Android",
-                "Create List View Android",
-                "Android Example",
-                "List View Source Code",
-                "List View Array Adapter",
-                "Android Example List View"
+        String[] values = new String[] { "Stock",
+                "Utah",
+                "Arizona",
+                "California",
+                "Colorado",
+                "Nevada",
+                "Wyoming",
+                "Black and White",
+                "Appalachia",
+                "Celestial Views",
+                "Flora and Fauna",
+                "Ghost Towns",
+                "Seascapes",
+                "Panoramic",
+                "Nature's Patterns",
+                "Temples",
+                "Architechure",
+                "Novelty",
+                "Wildlife",
+                "People"
         };
 
         // Define a new Adapter
@@ -123,6 +136,18 @@ public class GalleryActivity extends ActionBarActivity {
         getMenuInflater().inflate(R.menu.menu_gallery, menu);
         return true;
     }
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        // Checks the orientation of the screen and changes the layout if the orientation changes
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            Toast.makeText(this, "landscape", Toast.LENGTH_SHORT).show();
+        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+            Toast.makeText(this, "portrait", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
