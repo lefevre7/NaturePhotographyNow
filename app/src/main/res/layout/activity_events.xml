@@ -15,5 +15,72 @@
         android:layout_centerHorizontal="true"
         android:onClick="handleLoadFilesClick"/>
 
+    <WebView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/webView2"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_above="@+id/Title" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Title"
+        android:layout_marginBottom="94dp"
+        android:text="Title"
+        android:layout_above="@+id/button"
+        android:layout_alignLeft="@+id/button"
+        android:layout_alignStart="@+id/button" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Location"
+        android:text="Location"
+        android:layout_alignTop="@+id/Title"
+        android:layout_alignRight="@+id/button"
+        android:layout_alignEnd="@+id/button" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Description"
+        android:layout_below="@+id/Location"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="Description"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Year"
+        android:text="YYYY"
+        android:layout_below="@+id/Description"
+        android:layout_toRightOf="@+id/Month"
+        android:layout_toEndOf="@+id/Month" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Month"
+        android:layout_below="@+id/Description"
+        android:layout_centerHorizontal="true"
+        android:text="MM"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Day"
+        android:layout_below="@+id/Description"
+        android:layout_toLeftOf="@+id/Month"
+        android:layout_toStartOf="@+id/Month"
+        android:text="DD"/>
+
 
 </RelativeLayout>
