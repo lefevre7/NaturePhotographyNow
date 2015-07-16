@@ -48,14 +48,6 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        /*String url = "http://www.naturephotographynow.com/";
-        WebView webview1 = (WebView) this.findViewById(R.id.webView3);
-        webview1.getSettings().setJavaScriptEnabled(true);
-        webview1.getSettings().setLoadWithOverviewMode(true);
-        webview1.getSettings().setUseWideViewPort(true);
-        //webview1.getSettings().setBuiltInZoomControls(true);
-        webview1.loadUrl(url);*/
-
         int orientation = getScreenOrientation();
         Log.i("MainActivityTag", "At on Create");
         //if (orientation==1)        // 1 for Configuration.ORIENTATION_PORTRAIT
@@ -323,7 +315,7 @@ public class MainActivity extends ActionBarActivity {
         webview1.getSettings().setJavaScriptEnabled(true);
         webview1.getSettings().setLoadWithOverviewMode(true);
         webview1.getSettings().setUseWideViewPort(true);
-        //webview1.getSettings().setBuiltInZoomControls(true);
+        webview1.getSettings().setBuiltInZoomControls(true);
         webview1.loadUrl(url);
     }
 
