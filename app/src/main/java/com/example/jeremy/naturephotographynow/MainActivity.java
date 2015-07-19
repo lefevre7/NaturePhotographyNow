@@ -14,6 +14,7 @@ import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -340,7 +341,7 @@ public class MainActivity extends ActionBarActivity {
         super.onPostCreate(savedInstanceState);
         mDrawerToggle.syncState();
         String url = "http://www.naturephotographynow.com/";
-        /*
+        //*
         WebView webview1 = (WebView) this.findViewById(R.id.webView3);
         webview1.getSettings().setJavaScriptEnabled(true);
         webview1.getSettings().setLoadWithOverviewMode(true);
