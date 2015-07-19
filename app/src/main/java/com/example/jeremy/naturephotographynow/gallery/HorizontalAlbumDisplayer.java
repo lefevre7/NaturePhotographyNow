@@ -11,7 +11,7 @@ public class HorizontalAlbumDisplayer extends AlbumDisplayer {
     @Override
     public String display() {
         String toReturn = "";
-        for(Gallery gallery : this.getAlbum().galleries){
+        for(Gallery gallery : this.getAlbum().galleries.values()){
             toReturn += gallery.getName() + " ";
         }
         return toReturn;

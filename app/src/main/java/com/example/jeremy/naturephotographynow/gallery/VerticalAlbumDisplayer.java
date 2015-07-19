@@ -12,7 +12,7 @@ public class VerticalAlbumDisplayer extends AlbumDisplayer {
     @Override
     public String display() {
         String toReturn = "";
-        for(Gallery gallery : this.getAlbum().galleries){
+        for(Gallery gallery : this.getAlbum().galleries.values()){
             toReturn += gallery.getName() + "\n";
         }
         return toReturn;

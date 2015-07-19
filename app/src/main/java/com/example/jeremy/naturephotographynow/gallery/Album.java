@@ -1,27 +1,29 @@
 package com.example.jeremy.naturephotographynow.gallery;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Mezzo on 6/10/2015.
  * Contains a list of Galleries.
  */
 public class Album {
-    List<Gallery> galleries;
+    Map<String, Gallery> galleries;
     AlbumDisplayer displayer;
     Thumbnail thumbnail;
 
     public Album(){
-        galleries = new ArrayList<Gallery>();
-    }
-
-    public void populate(){
-        galleries.add(new Gallery());
+        galleries = new HashMap<String, Gallery>();
     }
 
     public void addGalleryToList(Gallery toAdd){
-        galleries.add(toAdd);
+        galleries.put(toAdd.getUrl(), toAdd);
+    }
+
+    public Gallery getGalleryByURL(String galleryURL){
+        return galleries.get(galleryURL);
     }
 
     public AlbumDisplayer getDisplayer() {

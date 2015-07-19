@@ -23,7 +23,7 @@ public class GalleryHorizontalTest extends InstrumentationTestCase {
     public void testDisplay(){
         Gallery gallery = new Gallery();
         gallery.setDisplayer(new HorizontalGalleryDisplayer(gallery));
-        gallery.populate();
+        //gallery.populate();
         assertEquals("PictureOne PictureTwo ", gallery.getDisplayer().display());
     }
 

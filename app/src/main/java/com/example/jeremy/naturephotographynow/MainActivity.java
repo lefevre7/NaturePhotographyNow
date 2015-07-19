@@ -23,6 +23,9 @@ import android.widget.Toast;
 import com.example.jeremy.naturephotographynow.activity.EventsActivity;
 import com.example.jeremy.naturephotographynow.activity.GalleryActivity;
 import com.example.jeremy.naturephotographynow.activity.HorizGalleryActivity;
+import com.example.jeremy.naturephotographynow.scraping.SiteMapper;
+
+import java.util.Set;
 
 /**
  * On startup, this activity creates a Navigation Drawer with a list of items,
@@ -47,6 +50,19 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        new Thread(new Runnable() {
+            public void run(){
+                SiteMapper sm = SiteMapper.getInstance();
+                try {
+                    Log.i("Sitemapper", "Starting sitemap load");
+                    sm.loadSitemap("http://naturephotographynow.com/sitemap.xml");
+                    Log.i("Sitemapper", "Sitemap loaded");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
 
         int orientation = getScreenOrientation();
         Log.i("MainActivityTag", "At on Create");

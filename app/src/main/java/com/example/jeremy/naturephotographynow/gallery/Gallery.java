@@ -10,23 +10,19 @@ public class Gallery {
     List<Picture> picArray;
     GalleryDisplayer displayer;
     String name;
+    String url;
     Thumbnail thumbnail;
 
     public Gallery(){
          picArray = new ArrayList<Picture>();
     }
 
-    public void populate(){
-        Picture picture1 = new Picture();
-        picture1.setName("PictureOne");
-        Picture picture2 = new Picture();
-        picture2.setName("PictureTwo");
-        picArray.add(picture1);
-        picArray.add(picture2);
-    }
-
     public GalleryDisplayer getDisplayer() {
         return displayer;
+    }
+
+    public void addPicture(Picture picture){
+        picArray.add(picture);
     }
 
     public void setDisplayer(GalleryDisplayer displayer) {
@@ -47,5 +43,13 @@ public class Gallery {
 
     public void setThumbnail(Thumbnail thumbnail) {
         this.thumbnail = thumbnail;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }
