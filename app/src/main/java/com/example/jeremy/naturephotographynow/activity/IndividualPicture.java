@@ -1,6 +1,7 @@
 package com.example.jeremy.naturephotographynow.activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.PersistableBundle;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -39,12 +40,9 @@ public class IndividualPicture extends ActionBarActivity {
     public void onPostCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
         super.onPostCreate(savedInstanceState, persistentState);
 
-        WebView webview = (WebView) this.findViewById(R.id.webView2);
-        webview.getSettings().setJavaScriptEnabled(true);
-        webview.getSettings().setLoadWithOverviewMode(true);
-        webview.getSettings().setUseWideViewPort(true);
-        webview.getSettings().setBuiltInZoomControls(true);
-        webview.loadUrl(url1);
+        Uri uri = Uri.parse(url1);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
     }
 
     @Override

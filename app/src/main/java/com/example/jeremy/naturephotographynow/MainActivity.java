@@ -65,7 +65,6 @@ public class MainActivity extends ActionBarActivity {
 
         initImageLoader(getApplicationContext());
 
-        int orientation = getScreenOrientation();
         Log.i("MainActivityTag", "At on Create");
 
         setContentView(R.layout.activity_main);
