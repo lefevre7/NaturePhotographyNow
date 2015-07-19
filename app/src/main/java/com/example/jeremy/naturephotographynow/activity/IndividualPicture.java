@@ -1,8 +1,10 @@
 package com.example.jeremy.naturephotographynow.activity;
 
 import android.content.Intent;
+import android.os.PersistableBundle;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebView;
@@ -26,6 +28,16 @@ public class IndividualPicture extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_individual_picture);
+        Intent intent = getIntent();
+
+        String itemValue = intent.getStringExtra("imgurl");
+        passInURL(itemValue);
+        Log.i("PassIn", itemValue);
+    }
+
+    @Override
+    public void onPostCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
+        super.onPostCreate(savedInstanceState, persistentState);
 
         WebView webview = (WebView) this.findViewById(R.id.webView2);
         webview.getSettings().setJavaScriptEnabled(true);
@@ -33,7 +45,6 @@ public class IndividualPicture extends ActionBarActivity {
         webview.getSettings().setUseWideViewPort(true);
         webview.getSettings().setBuiltInZoomControls(true);
         webview.loadUrl(url1);
-
     }
 
     @Override
