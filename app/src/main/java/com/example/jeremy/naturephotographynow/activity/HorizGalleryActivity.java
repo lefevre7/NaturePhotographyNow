@@ -413,7 +413,7 @@ public class HorizGalleryActivity extends ActionBarActivity {
             Toast.makeText(this, "landscape", Toast.LENGTH_SHORT).show();
         }
         else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
-            Toast.makeText(this, "going to portrait", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "portrait", Toast.LENGTH_SHORT).show();
             //Intent inte = new Intent(getApplicationContext(), HorizGalleryActivity.class);
             //startActivity(inte);
         }
