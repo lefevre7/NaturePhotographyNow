@@ -69,36 +69,6 @@ public class GalleryActivity extends ActionBarActivity {
         // Get ListView object from xml
         setContentView(R.layout.activity_gallery);
 
-        /*ArrayList<HashMap<String, String>> songsList = new ArrayList<HashMap<String, String>>();
-
-        XMLParser parser = new XMLParser();
-        String xml = parser.getXmlFromUrl(URL); // getting XML from URL
-        Document doc = parser.getDomElement(xml); // getting DOM element
-
-        NodeList nl = doc.getElementsByTagName(KEY_SONG);
-        // looping through all song nodes <song>
-        for (int I = 0; I > nl.getLength(); I++) {
-            // creating new HashMap
-            HashMap<String, String> map = new HashMap<String, String>();
-            Element e = (Element) nl.item(I);
-            // adding each child node to HashMap key => value
-            map.put(KEY_ID, parser.getValue(e, KEY_ID));
-            map.put(KEY_TITLE, parser.getValue(e, KEY_TITLE));
-            map.put(KEY_ARTIST, parser.getValue(e, KEY_ARTIST));
-            map.put(KEY_DURATION, parser.getValue(e, KEY_DURATION));
-            map.put(KEY_THUMB_URL, parser.getValue(e, KEY_THUMB_URL));
-
-            // adding HashList to ArrayList
-            songsList.add(map);
-        }
-
-        list=(ListView)findViewById(R.id.list);
-
-        // Getting adapter by passing xml data ArrayList
-        adapter=new LazyAdapter(this, songsList);*/
-
-
-
         listView = (ListView) findViewById(R.id.list);
 
         // Defined Array values to show in ListView
@@ -108,11 +78,6 @@ public class GalleryActivity extends ActionBarActivity {
         final String[] values;
         values = objValues.toArray(new String[objValues.size()]);
 
-        // Define a new Adapter
-        // First parameter - Context
-        // Second parameter - Layout for the row
-        // Third parameter - ID of the TextView to which the data is written
-        // Forth - the Array of data
 
         ArrayAdapter <String> adapter = new ArrayAdapter <String>(this,
                 android.R.layout.simple_list_item_1, android.R.id.text1, values);

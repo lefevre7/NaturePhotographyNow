@@ -95,24 +95,32 @@ public class SiteMapper {
         Log.v("Sitemapper", "Adding Pictures");
         for(Pair<String, String> locgal: images){
             Picture image = new Picture();
-            image.setUrl(locgal.first);
+            String imageLocationURL = locgal.first;
+            String galleryLocationURL = locgal.second;
 
             Pattern nameFinder = Pattern.compile("/([^/]+)/$");
-            Matcher nameMatcher = nameFinder.matcher(locgal.first);
+            Matcher nameMatcher = nameFinder.matcher(imageLocationURL);
             nameMatcher.find();
             String pictureName = nameMatcher.group(1);
             pictureName = toTitleCase(pictureName.replace('-', ' '));
             image.setName(pictureName);
 
-            nameMatcher = nameFinder.matcher(locgal.second);
+            nameMatcher = nameFinder.matcher(galleryLocationURL);
             nameMatcher.find();
             String galleryName = nameMatcher.group(1);
             galleryName = toTitleCase(galleryName.replace('-', ' '));
             Gallery g = album.getGalleryByName(galleryName);
 
+            image.setUrl(locgal.first);
+
             g.addPicture(image);
         }
         Log.v("Sitemapper", "Album completed");
+    }
+
+    private String getPictureUrl(String pageURL){
+
+        return null;
     }
 
     public Album getAlbum(){

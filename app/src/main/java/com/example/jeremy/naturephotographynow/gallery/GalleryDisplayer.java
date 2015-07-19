@@ -10,7 +10,7 @@ public abstract class GalleryDisplayer {
         this.gallery = gallery;
     }
 
-    public abstract String display();
+    public abstract String[] display();
 
     public Gallery getGallery() {
         return gallery;
