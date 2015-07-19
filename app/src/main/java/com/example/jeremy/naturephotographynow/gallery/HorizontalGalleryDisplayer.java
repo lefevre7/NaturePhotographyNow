@@ -9,11 +9,11 @@ public class HorizontalGalleryDisplayer extends GalleryDisplayer {
     }
 
     @Override
-    public String display() {
+    public String[] display() {
         String toReturn = "";
         for(Picture picture : this.getGallery().picArray){
             toReturn += picture.getName() + " ";
         }
-        return toReturn;
+        return new String[] {toReturn};
     }
 }

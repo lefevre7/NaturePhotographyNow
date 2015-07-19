@@ -12,6 +12,9 @@ import android.widget.GridView;
 import android.widget.Toast;
 
 import com.example.jeremy.naturephotographynow.R;
+import com.example.jeremy.naturephotographynow.gallery.Album;
+import com.example.jeremy.naturephotographynow.gallery.Gallery;
+import com.example.jeremy.naturephotographynow.scraping.SiteScraper;
 
 /**
  * Creates the GridView for an individual gallery
@@ -32,8 +35,11 @@ public class PictureActivity extends AppCompatActivity {
 
         String itemValue = intent.getStringExtra("selection");
 
+        Album album = SiteScraper.getInstance().getAlbum();
+        Gallery g = album.getGalleryByName(itemValue);
+
         GridView gridview = (GridView) findViewById(R.id.gridview);
-        gridview.setAdapter(new ImageAdapter(this));
+        gridview.setAdapter(new ImageAdapter(this.getBaseContext(), g));
 
         Log.i("PictureActivityTag", "Opening PictureActivity.");
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {

@@ -1,5 +1,6 @@
 package com.example.jeremy.naturephotographynow;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;
@@ -12,7 +13,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -20,7 +20,11 @@ import android.widget.Toast;
 
 import com.example.jeremy.naturephotographynow.activity.EventsActivity;
 import com.example.jeremy.naturephotographynow.activity.GalleryActivity;
-import com.example.jeremy.naturephotographynow.scraping.SiteMapper;
+import com.example.jeremy.naturephotographynow.scraping.SiteScraper;
+import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 
 /**
  * On startup, this activity creates a Navigation Drawer with a list of items,
@@ -47,10 +51,10 @@ public class MainActivity extends ActionBarActivity {
 
         new Thread(new Runnable() {
             public void run(){
-                SiteMapper sm = SiteMapper.getInstance();
+                SiteScraper sm = SiteScraper.getInstance();
                 try {
                     Log.i("Sitemapper", "Starting sitemap load");
-                    sm.loadSitemap("http://naturephotographynow.com/sitemap.xml");
+                    sm.init("http://naturephotographynow.com/sitemap.xml");
                     Log.i("Sitemapper", "Sitemap loaded");
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -58,6 +62,9 @@ public class MainActivity extends ActionBarActivity {
             }
         }).start();
 
+        initImageLoader(getApplicationContext());
+
+        int orientation = getScreenOrientation();
         Log.i("MainActivityTag", "At on Create");
 
         setContentView(R.layout.activity_main);
@@ -71,6 +78,17 @@ public class MainActivity extends ActionBarActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+    }
+
+    private static void initImageLoader(Context context) {
+        ImageLoaderConfiguration.Builder config = new ImageLoaderConfiguration.Builder(context);
+        config.threadPriority(Thread.NORM_PRIORITY - 2);
+        config.denyCacheImageMultipleSizesInMemory();
+        config.diskCacheFileNameGenerator(new Md5FileNameGenerator());
+        config.diskCacheSize(50 * 1024 * 1024);
+        config.tasksProcessingOrder(QueueProcessingType.LIFO);
+
+        ImageLoader.getInstance().init(config.build());
     }
 
     /**
