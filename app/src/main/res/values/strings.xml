@@ -49,5 +49,6 @@
     <string name="title_activity_events">EventsActivity</string>
     <string name="title_activity_picture">Picture</string>
     <string name="title_activity_horiz_gallery">HorizGalleryActivity</string>
+    <string name="title_activity_individual_picture">IndividualPicture</string>
 
 </resources>

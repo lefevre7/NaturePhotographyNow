@@ -5,7 +5,6 @@ import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Handler;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -22,10 +21,7 @@ import android.widget.Toast;
 
 import com.example.jeremy.naturephotographynow.activity.EventsActivity;
 import com.example.jeremy.naturephotographynow.activity.GalleryActivity;
-import com.example.jeremy.naturephotographynow.activity.HorizGalleryActivity;
 import com.example.jeremy.naturephotographynow.scraping.SiteMapper;
-
-import java.util.Set;
 
 /**
  * On startup, this activity creates a Navigation Drawer with a list of items,
@@ -132,15 +128,6 @@ public class MainActivity extends ActionBarActivity {
                 switch (selection) {
                     case "Galleries":
                         //change to Gallery activity
-                        /*
-                        if (orient == 0) {
-                            Log.i("MainActivityTag", "if.");
-                            intent = new Intent(parent.getContext(), HorizGalleryActivity.class);
-                        }
-                        if (orient == 1){
-                            Log.i("MainActivityTag", "else.");
-                            intent = new Intent(parent.getContext(), GalleryActivity.class);
-                        }//*/
                         intent = new Intent(parent.getContext(), GalleryActivity.class);
                         startActivity(intent);
                         break;
