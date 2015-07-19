@@ -14,7 +14,6 @@ import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -22,15 +21,11 @@ import android.widget.Toast;
 
 import com.example.jeremy.naturephotographynow.activity.EventsActivity;
 import com.example.jeremy.naturephotographynow.activity.GalleryActivity;
-import com.example.jeremy.naturephotographynow.scraping.SiteMapper;
+import com.example.jeremy.naturephotographynow.scraping.SiteScraper;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
-import com.nostra13.universalimageloader.utils.StorageUtils;
-
-import java.io.File;
-import java.util.Set;
 
 /**
  * On startup, this activity creates a Navigation Drawer with a list of items,
@@ -58,10 +53,10 @@ public class MainActivity extends ActionBarActivity {
 
         new Thread(new Runnable() {
             public void run(){
-                SiteMapper sm = SiteMapper.getInstance();
+                SiteScraper sm = SiteScraper.getInstance();
                 try {
                     Log.i("Sitemapper", "Starting sitemap load");
-                    sm.loadSitemap("http://naturephotographynow.com/sitemap.xml");
+                    sm.init("http://naturephotographynow.com/sitemap.xml");
                     Log.i("Sitemapper", "Sitemap loaded");
                 } catch (Exception e) {
                     e.printStackTrace();

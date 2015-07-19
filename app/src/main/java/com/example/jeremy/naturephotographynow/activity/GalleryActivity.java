@@ -1,9 +1,7 @@
 package com.example.jeremy.naturephotographynow.activity;
 
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.net.Uri;
-import android.os.CountDownTimer;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,20 +10,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.example.jeremy.naturephotographynow.R;
 import com.example.jeremy.naturephotographynow.gallery.VerticalAlbumDisplayer;
-import com.example.jeremy.naturephotographynow.scraping.SiteMapper;
+import com.example.jeremy.naturephotographynow.scraping.SiteScraper;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -72,7 +62,7 @@ public class GalleryActivity extends ActionBarActivity {
         listView = (ListView) findViewById(R.id.list);
 
         // Defined Array values to show in ListView
-        SiteMapper sm = SiteMapper.getInstance();
+        SiteScraper sm = SiteScraper.getInstance();
         List<String> objValues = new VerticalAlbumDisplayer(sm.getAlbum()).display();
 
         final String[] values;

@@ -14,7 +14,7 @@ import android.widget.Toast;
 import com.example.jeremy.naturephotographynow.R;
 import com.example.jeremy.naturephotographynow.gallery.Album;
 import com.example.jeremy.naturephotographynow.gallery.Gallery;
-import com.example.jeremy.naturephotographynow.scraping.SiteMapper;
+import com.example.jeremy.naturephotographynow.scraping.SiteScraper;
 
 public class PictureActivity extends AppCompatActivity {
 
@@ -29,7 +29,7 @@ public class PictureActivity extends AppCompatActivity {
 
         String itemValue = intent.getStringExtra("selection");
 
-        Album album = SiteMapper.getInstance().getAlbum();
+        Album album = SiteScraper.getInstance().getAlbum();
         Gallery g = album.getGalleryByName(itemValue);
 
         GridView gridview = (GridView) findViewById(R.id.gridview);

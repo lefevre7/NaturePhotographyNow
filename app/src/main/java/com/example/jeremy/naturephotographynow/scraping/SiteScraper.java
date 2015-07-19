@@ -28,35 +28,30 @@ import javax.xml.parsers.ParserConfigurationException;
 /**
  * Created by Mezzo on 7/18/2015.
  */
-public class SiteMapper {
+public class SiteScraper {
 
     private Album album;
-    private static SiteMapper singleton;
+    private static SiteScraper singleton;
 
-    private SiteMapper(){
+    private SiteScraper(){
 
     }
 
-    public static SiteMapper getInstance(){
-        if(SiteMapper.singleton == null){
-            SiteMapper.singleton = new SiteMapper();
+    public static SiteScraper getInstance(){
+        if(SiteScraper.singleton == null){
+            SiteScraper.singleton = new SiteScraper();
         }
         return singleton;
     }
 
-    public void loadSitemap(String sitemapURL) throws IOException, ParserConfigurationException, SAXException {
-        Log.v("Sitemapper", "Preparing warmly");
-        URL url = new URL(sitemapURL);
-        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        DocumentBuilder db = dbf.newDocumentBuilder();
-        Document doc = db.parse(new InputSource(url.openStream()));
-        doc.getDocumentElement().normalize();
-        Log.v("Sitemapper", "Document acquired");
+    public void init(String sitemapURL) throws IOException, ParserConfigurationException, SAXException {
+        Document doc = getSiteMap(sitemapURL);
+        Log.v("SiteScraper", "Document acquired");
         List<String> galleries = new ArrayList<String>();
         List<Pair<String, String>> images = new ArrayList<Pair<String, String>>();
-        Log.v("Sitemapper", "Achieving URL obtain");
+        Log.v("SiteScraper", "Achieving URL obtain");
         NodeList nodeList = doc.getElementsByTagName("url");
-        Log.v("Sitemapper", "Beginning iteration...");
+        Log.v("SiteScraper", "Beginning iteration...");
         for(int i = 0; i < nodeList.getLength(); i++){
             Node n = nodeList.item(i);
             Element en = (Element) n;
@@ -71,14 +66,15 @@ public class SiteMapper {
                 if(mPic.find()){
                     Pair<String, String> locgal = new Pair<String, String>(location, mGal.group(0));
                     images.add(locgal);
-                    Log.v("Sitemapper", "Adding Picture " + location);
+                    Log.v("SiteScraper", "Adding Picture " + location);
                 } else {
                     galleries.add(location);
-                    Log.v("Sitemapper", "Adding Gallery " + location);
+                    Log.v("SiteScraper", "Adding Gallery " + location);
                 }
             }
         }
-        Log.v("Sitemapper", "Building Album");
+
+        Log.v("SiteScraper", "Building Album");
         this.album = new Album();
         for(String gallery: galleries){
             Gallery gGallery = new Gallery();
@@ -92,7 +88,7 @@ public class SiteMapper {
 
             album.addGalleryToList(gGallery);
         }
-        Log.v("Sitemapper", "Adding Pictures");
+        Log.v("SiteScraper", "Adding Pictures");
         for(Pair<String, String> locgal: images){
             Picture image = new Picture();
             String imageLocationURL = locgal.first;
@@ -115,7 +111,7 @@ public class SiteMapper {
 
             g.addPicture(image);
         }
-        Log.v("Sitemapper", "Album completed");
+        Log.v("SiteScraper", "Album completed");
     }
 
     private String getPictureUrl(String pageURL){
@@ -123,9 +119,19 @@ public class SiteMapper {
         return null;
     }
 
+    private Document getSiteMap(String sitemapURL) throws ParserConfigurationException, IOException, SAXException {
+        URL url = new URL(sitemapURL);
+        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+        DocumentBuilder db = dbf.newDocumentBuilder();
+        Document doc = db.parse(new InputSource(url.openStream()));
+        doc.getDocumentElement().normalize();
+        return doc;
+    }
+
     public Album getAlbum(){
         return album;
     }
+
 
     private static String toTitleCase(String givenString) {
         String[] arr = givenString.split(" ");
