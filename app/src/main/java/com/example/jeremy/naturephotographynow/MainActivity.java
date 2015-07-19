@@ -22,8 +22,6 @@ import android.widget.Toast;
 
 import com.example.jeremy.naturephotographynow.activity.EventsActivity;
 import com.example.jeremy.naturephotographynow.activity.GalleryActivity;
-import com.example.jeremy.naturephotographynow.activity.MainActivity2;
-import com.example.jeremy.naturephotographynow.activity.WebActivity;
 
 /**
  * On startup, this activity creates a Navigation Drawer with a list of items,
