@@ -36,7 +36,7 @@ public class PictureActivity extends AppCompatActivity {
         String itemValue = intent.getStringExtra("selection");
 
         Album album = SiteScraper.getInstance().getAlbum();
-        Gallery g = album.getGalleryByName(itemValue);
+        final Gallery g = album.getGalleryByName(itemValue);
 
         GridView gridview = (GridView) findViewById(R.id.gridview);
         gridview.setAdapter(new ImageAdapter(this.getBaseContext(), g));
@@ -45,8 +45,11 @@ public class PictureActivity extends AppCompatActivity {
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
-                Toast.makeText(PictureActivity.this, "" + position,
-                        Toast.LENGTH_SHORT).show();
+                /*Toast.makeText(PictureActivity.this, "" + position,
+                        Toast.LENGTH_SHORT).show();*/
+                Intent intent = new Intent(parent.getContext(), IndividualPicture.class);
+                intent.putExtra("imgurl", g.get(position).getPageUrl());
+                startActivity(intent);
             }
         });
     }

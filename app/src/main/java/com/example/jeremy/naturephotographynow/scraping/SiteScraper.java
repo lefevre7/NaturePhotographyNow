@@ -7,6 +7,7 @@ import com.example.jeremy.naturephotographynow.gallery.Album;
 import com.example.jeremy.naturephotographynow.gallery.Gallery;
 import com.example.jeremy.naturephotographynow.gallery.Picture;
 
+import org.jsoup.Jsoup;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -15,6 +16,7 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -107,16 +109,19 @@ public class SiteScraper {
             galleryName = toTitleCase(galleryName.replace('-', ' '));
             Gallery g = album.getGalleryByName(galleryName);
 
-            image.setUrl(locgal.first);
+            Log.v("SiteScraper", "Getting Picture for " + pictureName);
+            image.setUrl(getPictureUrl(imageLocationURL));
+            image.setPageUrl(imageLocationURL);
 
             g.addPicture(image);
         }
         Log.v("SiteScraper", "Album completed");
     }
 
-    private String getPictureUrl(String pageURL){
-
-        return null;
+    private String getPictureUrl(String pageURL) throws IOException {
+        org.jsoup.nodes.Document doc = Jsoup.connect(pageURL).get();
+        org.jsoup.nodes.Element node = doc.select("#gallery_big_img").first();
+        return node.attr("src");
     }
 
     private Document getSiteMap(String sitemapURL) throws ParserConfigurationException, IOException, SAXException {
