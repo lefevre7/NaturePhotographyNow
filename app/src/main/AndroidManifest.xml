@@ -2,22 +2,24 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.jeremy.naturephotographynow" >
 
-            <!-- could go right next to application -w/o "<!- - "
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!--
+     could go right next to application -w/o "<!- - "
                         android:icon="@drawable/icon" android:label="@string/app_name">
 
                         //this one in <application
-                        android:label="@string/app_name"-->
+                        android:label="@string/app_name"
+    -->
     <application
         android:allowBackup="true"
         android:icon="@drawable/cover"
-        android:theme="@style/AppTheme"
-        android:label="@string/app_name">
-
-
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:configChanges="keyboardHidden|orientation|screenSize">
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -117,8 +119,10 @@
             android:name=".activity.PictureActivity"
             android:label="@string/title_activity_picture" >
         </activity>
+        <activity
+            android:name=".activity.HorizGalleryActivity"
+            android:label="@string/title_activity_horiz_gallery" >
+        </activity>
     </application>
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 </manifest>
