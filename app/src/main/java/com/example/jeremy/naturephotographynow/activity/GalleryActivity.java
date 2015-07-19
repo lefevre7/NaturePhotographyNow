@@ -411,9 +411,10 @@ public class GalleryActivity extends ActionBarActivity {
 
         // Checks the orientation of the screen and changes the layout if the orientation changes
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            Toast.makeText(this, "landscape", Toast.LENGTH_SHORT).show();
-           // Intent inte = new Intent(getApplicationContext(), HorizGalleryActivity.class);
-           //startActivity(inte);
+            Toast.makeText(this, "going to landscape", Toast.LENGTH_SHORT).show();
+            //new HorizGalleryActivity();
+            Intent inte = new Intent(getApplicationContext(), HorizGalleryActivity.class);
+            startActivity(inte);
         }
         else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
             Toast.makeText(this, "portrait", Toast.LENGTH_SHORT).show();

@@ -13,6 +13,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Gallery;
+import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -32,7 +35,9 @@ import java.util.HashMap;
 public class HorizGalleryActivity extends ActionBarActivity {
 
     /** A tag for logging purposes */
-    public static final String GalTAG = "GalleryActivityTag";
+    public static final String GalTAG = "HorizGalleryActivityTag";
+
+
 
     //private Intent getPortInstance() {
     //    return intent1;
@@ -51,7 +56,7 @@ public class HorizGalleryActivity extends ActionBarActivity {
     ListView list;
     LazyAdapter adapter;*/
 
-    ListView listView;
+    Gallery listView;
 
     /**
      * Creates (will obtain) a list (that will be images, but right now is an example)
@@ -64,6 +69,19 @@ public class HorizGalleryActivity extends ActionBarActivity {
 
         // Get ListView object from xml
         setContentView(R.layout.activity_gallery);
+
+        ImageView selectedImage;
+         Integer[] mImageIds = {
+                R.drawable.naturesamplepic,
+                R.drawable.sample_0,
+                R.drawable.naturephotographynowwebsitepage,
+                R.drawable.naturephotographynowwebsitepage2,
+                R.drawable.sample_1,
+                R.drawable.naturesamplepic,
+                R.drawable.naturephotographynowwebsitepage,
+                R.drawable.sample_3
+
+        };
 
         /*ArrayList<HashMap<String, String>> songsList = new ArrayList<HashMap<String, String>>();
 
@@ -95,7 +113,7 @@ public class HorizGalleryActivity extends ActionBarActivity {
 
 
 
-        listView = (ListView) findViewById(R.id.list);
+        //listView = (Gallery) findViewById(R.id.list);
 
         // Defined Array values to show in ListView
         final String[] values = new String[] { "Stock",
@@ -126,12 +144,14 @@ public class HorizGalleryActivity extends ActionBarActivity {
         // Third parameter - ID of the TextView to which the data is written
         // Forth - the Array of data
 
-        ArrayAdapter <String> adapter = new ArrayAdapter <String>(this,
-                android.R.layout.simple_list_item_1, android.R.id.text1, values);
+        Gallery listView = (Gallery) findViewById(R.id.list);
+        //selectedImage=(ImageView)findViewById(R.id.imageView1);
+        listView.setSpacing(1);
+        listView.setAdapter(new GalleryImageAdapter(this));
 
 
         // Assign adapter to ListView
-        listView.setAdapter(adapter);
+        //listView.setAdapter(adapter);
 
         // ListView Item Click Listener
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -158,14 +178,14 @@ public class HorizGalleryActivity extends ActionBarActivity {
                 int itemPosition     = position;
 
                 // ListView Clicked item value
-                String  itemValue    = (String) listView.getItemAtPosition(position);
+                //String  itemValue    = (String) listView.getItemAtPosition(position);
 
                 /*// ListView Clicked item value
                 String  itemValue    = (String) list.getItemAtPosition(position);*/
 
                 // Show Alert
                 Toast.makeText(getApplicationContext(),
-                        "Position :" + itemPosition + "  ListItem : " + itemValue, Toast.LENGTH_LONG)
+                        "Position :" + itemPosition, Toast.LENGTH_LONG)
                         .show();
 
                 //instead of getting the activities through an html parser class,
@@ -173,7 +193,7 @@ public class HorizGalleryActivity extends ActionBarActivity {
                 Uri uri;
                 String selection = values[(int) id];
                 Intent intent;
-                Log.i("GalleryActivityTag", "Opening a GalleryActivity.");
+                Log.i("HorizGalleryActivityTag", "Opening a GalleryActivity.");
                 try {
                     switch (selection) {
                         case "Stock":
@@ -334,7 +354,7 @@ public class HorizGalleryActivity extends ActionBarActivity {
                     }
                 }
                 catch(Exception e) {
-                    Log.e("GalleryActivityTag", "A GalleryActivity has stopped probably due " +
+                    Log.e("HorizGalleryActivityTag", "A GalleryActivity has stopped probably due " +
                             "to it's not being on the website anymore. This is the StackTrace:");
                     e.printStackTrace();
                     final Toast toast = Toast.makeText(HorizGalleryActivity.this, "Click " +
@@ -413,9 +433,10 @@ public class HorizGalleryActivity extends ActionBarActivity {
             Toast.makeText(this, "landscape", Toast.LENGTH_SHORT).show();
         }
         else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
-            Toast.makeText(this, "portrait", Toast.LENGTH_SHORT).show();
-            //Intent inte = new Intent(getApplicationContext(), HorizGalleryActivity.class);
-            //startActivity(inte);
+            Toast.makeText(this, "going to portrait", Toast.LENGTH_SHORT).show();
+            //new GalleryActivity();
+            Intent inte = new Intent(getApplicationContext(), HorizGalleryActivity.class);
+            startActivity(inte);
         }
     }
 

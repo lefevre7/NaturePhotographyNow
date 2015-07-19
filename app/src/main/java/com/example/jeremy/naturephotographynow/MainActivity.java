@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.example.jeremy.naturephotographynow.activity.EventsActivity;
 import com.example.jeremy.naturephotographynow.activity.GalleryActivity;
+import com.example.jeremy.naturephotographynow.activity.HorizGalleryActivity;
 
 /**
  * On startup, this activity creates a Navigation Drawer with a list of items,
@@ -34,6 +35,7 @@ public class MainActivity extends ActionBarActivity {
     private ArrayAdapter<String> mAdapter;
     private ActionBarDrawerToggle mDrawerToggle;
     private String mActivityTitle;
+    int orient = 0;
     /** A tag for logging purposes */
     public static final String MAINTAG = "MainActivityTag";
     //Bundle savedInstanceState;
@@ -114,7 +116,14 @@ public class MainActivity extends ActionBarActivity {
                 switch (selection) {
                     case "Galleries":
                         //change to Gallery activity
-                        intent = new Intent(parent.getContext(), GalleryActivity.class);
+                        if (orient == 0) {
+                            Log.i("MainActivityTag", "if.");
+                            intent = new Intent(parent.getContext(), HorizGalleryActivity.class);
+                        }
+                        if (orient == 1){
+                            Log.i("MainActivityTag", "else.");
+                            intent = new Intent(parent.getContext(), GalleryActivity.class);
+                        }
                         startActivity(intent);
                         break;
 
@@ -334,6 +343,7 @@ public class MainActivity extends ActionBarActivity {
         // Checks the orientation of the screen and changes the layout if the orientation changes
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             Toast.makeText(this, "landscape", Toast.LENGTH_SHORT).show();
+            orient = 1;
             //onCreate(this.savedInstanceState);
             //setContentView(R.layout.activity_main);
             //mDrawerList = (ListView)findViewById(R.id.navList);
@@ -347,6 +357,7 @@ public class MainActivity extends ActionBarActivity {
             //getSupportActionBar().setHomeButtonEnabled(true);
         } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
             Toast.makeText(this, "portrait", Toast.LENGTH_SHORT).show();
+            orient = 0;
             //onCreate(savedInstanceState);
             //setContentView(R.layout.activity_main2);
             //mDrawerList = (ListView)findViewById(R.id.navList);
