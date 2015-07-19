@@ -18,6 +18,10 @@ public class IndividualPicture extends ActionBarActivity {
     public void passInURL(String url){
         url1 = url;
     }
+    /**
+     * starts a WebView of the individualPicture
+     * @param savedInstanceState Bundle
+     * */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

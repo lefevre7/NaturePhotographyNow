@@ -17,6 +17,9 @@ import android.widget.TextView;
 
 import com.example.jeremy.naturephotographynow.R;
 
+/**
+ * Adapts the images for loading
+ * */
 public class LazyAdapter extends BaseAdapter {
 
     private Activity activity;
@@ -43,6 +46,9 @@ public class LazyAdapter extends BaseAdapter {
         return position;
     }
 
+    /**
+     * Adapts the images for loading
+     * */
     public View getView(int position, View convertView, ViewGroup parent) {
         View vi=convertView;
         if(convertView==null)

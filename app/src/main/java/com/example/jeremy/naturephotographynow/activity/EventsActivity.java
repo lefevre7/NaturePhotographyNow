@@ -19,8 +19,8 @@ import java.util.Arrays;
 import java.util.GregorianCalendar;
 
 /**
- * Holds a list of events created by the Artist and can pass them to the calendar on the user's
- * phone.
+ * Has a WebView of the events created by the Artist and passes them to the calendar on the user's
+ * phone when the user types them in.
  */
 public class EventsActivity extends ActionBarActivity {
 
@@ -29,6 +29,7 @@ public class EventsActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events);
 
+        //loading the WebView of the Events page
         String url = "http://www.naturephotographynow.com/#/page/events/";
         WebView webview = (WebView) this.findViewById(R.id.webView2);
         webview.getSettings().setJavaScriptEnabled(true);
@@ -60,6 +61,10 @@ public class EventsActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Takes the Title, Location, Description, Year, Month, and Day
+     * from the user input to the user's calandar app
+     * */
         public void handleLoadFilesClick(View view){
             Intent calIntent = new Intent(Intent.ACTION_INSERT);
             calIntent.setType("vnd.android.cursor.item/event");
@@ -82,13 +87,6 @@ public class EventsActivity extends ActionBarActivity {
             Integer yr1 = Integer.parseInt(yr);
             Integer mo1 = Integer.parseInt(mo) - 1;//month "0" is January, not "1"
             Integer da1 = Integer.parseInt(da);
-
-
-
-            //intent.putExtra("theBook", book);
-            //intent.putExtra("theChapter", chapter);
-            //intent.putExtra("theVerse", verse);
-            //startActivity(intent);
 
             calIntent.putExtra(CalendarContract.Events.TITLE, title);
             calIntent.putExtra(CalendarContract.Events.EVENT_LOCATION, loc);

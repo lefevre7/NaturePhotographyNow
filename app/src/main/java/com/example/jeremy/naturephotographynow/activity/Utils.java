@@ -2,6 +2,7 @@ package com.example.jeremy.naturephotographynow.activity;
 
 /**
  * Created by Jeremy on 7/14/2015.
+ * for Utility
  */
 import java.io.InputStream;
 import java.io.OutputStream;

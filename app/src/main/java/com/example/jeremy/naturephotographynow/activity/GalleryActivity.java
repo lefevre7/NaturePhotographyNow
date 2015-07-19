@@ -29,30 +29,12 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * Creates (will obtain) a list (that will be images, but right now is an example)
- * and puts them into an adapter to display
+ * Obtains a list and puts them into an adapter to display
  */
 public class GalleryActivity extends ActionBarActivity {
 
     /** A tag for logging purposes */
     public static final String GalTAG = "GalleryActivityTag";
-
-    //private Intent getHorizInstance() {
-    //        return intent1;
-    //}
-
-    /*// All static variables
-    static final String URL = "http://api.androidhive.info/music/music.xml";
-    // XML node keys
-    static final String KEY_SONG = "song"; // parent node
-    static final String KEY_ID = "id";
-    static final String KEY_TITLE = "title";
-    static final String KEY_ARTIST = "artist";
-    static final String KEY_DURATION = "duration";
-    static final String KEY_THUMB_URL = "thumb_url";
-
-    ListView list;
-    LazyAdapter adapter;*/
 
     ListView listView;
 
@@ -60,7 +42,7 @@ public class GalleryActivity extends ActionBarActivity {
     /**
      * Creates (will obtain) a list (that will be images, but right now is an example)
      * and puts them into an adapter to display
-     * @param savedInstanceState
+     * @param savedInstanceState Bundle
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,36 +50,6 @@ public class GalleryActivity extends ActionBarActivity {
 
         // Get ListView object from xml
         setContentView(R.layout.activity_gallery);
-
-        /*ArrayList<HashMap<String, String>> songsList = new ArrayList<HashMap<String, String>>();
-
-        XMLParser parser = new XMLParser();
-        String xml = parser.getXmlFromUrl(URL); // getting XML from URL
-        Document doc = parser.getDomElement(xml); // getting DOM element
-
-        NodeList nl = doc.getElementsByTagName(KEY_SONG);
-        // looping through all song nodes <song>
-        for (int I = 0; I > nl.getLength(); I++) {
-            // creating new HashMap
-            HashMap<String, String> map = new HashMap<String, String>();
-            Element e = (Element) nl.item(I);
-            // adding each child node to HashMap key => value
-            map.put(KEY_ID, parser.getValue(e, KEY_ID));
-            map.put(KEY_TITLE, parser.getValue(e, KEY_TITLE));
-            map.put(KEY_ARTIST, parser.getValue(e, KEY_ARTIST));
-            map.put(KEY_DURATION, parser.getValue(e, KEY_DURATION));
-            map.put(KEY_THUMB_URL, parser.getValue(e, KEY_THUMB_URL));
-
-            // adding HashList to ArrayList
-            songsList.add(map);
-        }
-
-        list=(ListView)findViewById(R.id.list);
-
-        // Getting adapter by passing xml data ArrayList
-        adapter=new LazyAdapter(this, songsList);*/
-
-
 
         listView = (ListView) findViewById(R.id.list);
 
@@ -142,25 +94,6 @@ public class GalleryActivity extends ActionBarActivity {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
 
-                // ListView Clicked item index
-                int itemPosition     = position;
-
-                // ListView Clicked item value
-                String  itemValue    = (String) listView.getItemAtPosition(position);
-
-                /*// ListView Clicked item value
-                String  itemValue    = (String) list.getItemAtPosition(position);*/
-
-                /*
-               //Show Alert
-                Toast.makeText(getApplicationContext(),
-                        "Position :" + itemPosition + "  ListItem : " + itemValue, Toast.LENGTH_LONG)
-                        .show();
-                //*/
-
-                //instead of getting the activities through an html parser class,
-                //they are specifically given.
-                Uri uri;
                 String selection = values[(int) id];
                 Intent intent = new Intent(parent.getContext(), PictureActivity.class);
                 Log.i("GalleryActivityTag", "Opening a GalleryActivity.");

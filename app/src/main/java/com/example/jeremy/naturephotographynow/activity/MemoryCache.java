@@ -2,6 +2,7 @@ package com.example.jeremy.naturephotographynow.activity;
 
 /**
  * Created by Jeremy on 7/14/2015.
+ * Gets, clears, and puts a bitmap
  */
 import java.lang.ref.SoftReference;
 import java.util.Collections;

@@ -25,6 +25,9 @@ import android.widget.ImageView;
 
 import com.example.jeremy.naturephotographynow.R;
 
+/**
+ * Loads an image
+ */
 public class ImageLoader {
 
     MemoryCache memoryCache=new MemoryCache();

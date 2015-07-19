@@ -2,6 +2,7 @@ package com.example.jeremy.naturephotographynow.activity;
 
 /**
  * Created by Jeremy on 7/14/2015.
+ * Parses the Nature Photography Now Website sitemap.
  */
 import java.io.IOException;
 import java.io.StringReader;
@@ -27,6 +28,9 @@ import org.xml.sax.SAXException;
 import android.os.StrictMode;
 import android.util.Log;
 
+/**
+ *  Parses the Nature Photography Now Website sitemap.
+ */
 public class XMLParser {
 
     // constructor

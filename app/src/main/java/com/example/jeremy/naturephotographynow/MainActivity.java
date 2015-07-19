@@ -9,7 +9,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.util.Log;
-import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -34,14 +33,13 @@ public class MainActivity extends ActionBarActivity {
     private ArrayAdapter<String> mAdapter;
     private ActionBarDrawerToggle mDrawerToggle;
     private String mActivityTitle;
-    int orient = 0;
     /** A tag for logging purposes */
     public static final String MAINTAG = "MainActivityTag";
     //Bundle savedInstanceState;
 
     /**
      * Sets the variables and Navigation Drawer
-     * @param savedInstanceState
+     * @param savedInstanceState Bundle
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,18 +58,9 @@ public class MainActivity extends ActionBarActivity {
             }
         }).start();
 
-        int orientation = getScreenOrientation();
         Log.i("MainActivityTag", "At on Create");
-        //if (orientation==1)        // 1 for Configuration.ORIENTATION_PORTRAIT
-        //{                          // 2 for Configuration.ORIENTATION_LANDSCAPE
-            //your code             // 0 for Configuration.ORIENTATION_SQUARE
-            //Log.i("MainActivityTag", "Portrait");
-            setContentView(R.layout.activity_main);
-        //}
-        //else {
-            //Log.i("MainActivityTag", "Landscape");
-            //setContentView(R.layout.activity_main2);
-        //}
+
+        setContentView(R.layout.activity_main);
 
         mDrawerList = (ListView)findViewById(R.id.navList);
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
@@ -84,21 +73,6 @@ public class MainActivity extends ActionBarActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
     }
 
-    public int getScreenOrientation()
-    {
-        Display getOrient = getWindowManager().getDefaultDisplay();
-        int orientation = Configuration.ORIENTATION_UNDEFINED;
-        if(getOrient.getWidth()==getOrient.getHeight()){
-            orientation = Configuration.ORIENTATION_SQUARE;
-        } else{
-            if(getOrient.getWidth() < getOrient.getHeight()){
-                orientation = Configuration.ORIENTATION_PORTRAIT;
-            }else {
-                orientation = Configuration.ORIENTATION_LANDSCAPE;
-            }
-        }
-        return orientation;
-    }
     /**
      * Creates a navigation list, adds items to it, and has a switch statement that starts a uri
      * or other activity.
@@ -147,7 +121,7 @@ public class MainActivity extends ActionBarActivity {
                         new CountDownTimer(5000, 1000) {
                             /**
                              * Shows the toast message for millisUntilFinished
-                             * @param millisUntilFinished
+                             * @param millisUntilFinished long
                              */
                             public void onTick(long millisUntilFinished) {
                                 toast.show();
@@ -207,7 +181,7 @@ public class MainActivity extends ActionBarActivity {
                         new CountDownTimer(7000, 1000) {
                             /**
                              * Shows the toast message for millisUntilFinished
-                             * @param millisUntilFinished
+                             * @param millisUntilFinished long
                              */
                             public void onTick(long millisUntilFinished) {
                                 toast2.show();
@@ -316,14 +290,14 @@ public class MainActivity extends ActionBarActivity {
 
     /**
      * Sync the toggle state after onRestoreInstanceState has happened.
-     * @param savedInstanceState
+     * @param savedInstanceState Bundle
      */
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         mDrawerToggle.syncState();
         String url = "http://www.naturephotographynow.com/";
-        /*
+        //*
         WebView webview1 = (WebView) this.findViewById(R.id.webView3);
         webview1.getSettings().setJavaScriptEnabled(true);
         webview1.getSettings().setLoadWithOverviewMode(true);
@@ -335,62 +309,24 @@ public class MainActivity extends ActionBarActivity {
 
     /**
      * Change the Drawer when the configuration is changed.
-     * @param newConfig
+     * @param newConfig Configuration
      */
-    //@Override
-    //public void onConfigurationChanged(Configuration newConfig) {
-    //    super.onConfigurationChanged(newConfig);
-    //    mDrawerToggle.onConfigurationChanged(newConfig);
-    //}
-
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-
-        // Checks the orientation of the screen and changes the layout if the orientation changes
-        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            Toast.makeText(this, "landscape", Toast.LENGTH_SHORT).show();
-            orient = 1;
-            //onCreate(this.savedInstanceState);
-            //setContentView(R.layout.activity_main);
-            //mDrawerList = (ListView)findViewById(R.id.navList);
-            //mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
-            //mActivityTitle = getTitle().toString();
-
-            //addDrawerItems();
-            //setupDrawer();
-
-            //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            //getSupportActionBar().setHomeButtonEnabled(true);
-        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
-            Toast.makeText(this, "portrait", Toast.LENGTH_SHORT).show();
-            orient = 0;
-            //onCreate(savedInstanceState);
-            //setContentView(R.layout.activity_main2);
-            //mDrawerList = (ListView)findViewById(R.id.navList);
-            //mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
-            //mActivityTitle = getTitle().toString();
-
-            //addDrawerItems();
-            //setupDrawer();
-
-            //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            //getSupportActionBar().setHomeButtonEnabled(true);
-        }
+        mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        //getMenuInflater().inflate(R.menu.menu_main2, menu);
         return true;
     }
 
     /**
-     *
-     * @param item
-     * @return true if an item on the drawer is selected
+     * @param item MenuItem
+     * @return boolean
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

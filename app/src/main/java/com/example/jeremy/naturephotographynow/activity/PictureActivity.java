@@ -13,10 +13,16 @@ import android.widget.Toast;
 
 import com.example.jeremy.naturephotographynow.R;
 
+/**
+ * Creates the GridView for an individual gallery
+ * */
 public class PictureActivity extends AppCompatActivity {
 
     /** A tag for logging purposes */
     public static final String PICTAG = "PictureActivityTag";
+    /**
+     * Creates the GridView for an individual gallery
+     * */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
