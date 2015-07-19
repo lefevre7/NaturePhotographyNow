@@ -15,7 +15,6 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -83,25 +82,34 @@ public class SiteMapper {
         this.album = new Album();
         for(String gallery: galleries){
             Gallery gGallery = new Gallery();
-            gGallery.setUrl(gallery);
+
             Pattern nameFinder = Pattern.compile("/([^/]+)/$");
             Matcher nameMatcher = nameFinder.matcher(gallery);
             nameMatcher.find();
             String galleryName = nameMatcher.group(1);
             galleryName = toTitleCase(galleryName.replace('-', ' '));
             gGallery.setName(galleryName);
+
             album.addGalleryToList(gGallery);
         }
         Log.v("Sitemapper", "Adding Pictures");
         for(Pair<String, String> locgal: images){
             Picture image = new Picture();
             image.setUrl(locgal.first);
+
             Pattern nameFinder = Pattern.compile("/([^/]+)/$");
             Matcher nameMatcher = nameFinder.matcher(locgal.first);
             nameMatcher.find();
             String pictureName = nameMatcher.group(1);
             pictureName = toTitleCase(pictureName.replace('-', ' '));
-            Gallery g = album.getGalleryByURL(locgal.second);
+            image.setName(pictureName);
+
+            nameMatcher = nameFinder.matcher(locgal.second);
+            nameMatcher.find();
+            String galleryName = nameMatcher.group(1);
+            galleryName = toTitleCase(galleryName.replace('-', ' '));
+            Gallery g = album.getGalleryByName(galleryName);
+
             g.addPicture(image);
         }
         Log.v("Sitemapper", "Album completed");

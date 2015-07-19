@@ -19,11 +19,11 @@ public class Album {
     }
 
     public void addGalleryToList(Gallery toAdd){
-        galleries.put(toAdd.getUrl(), toAdd);
+        galleries.put(toAdd.getName(), toAdd);
     }
 
-    public Gallery getGalleryByURL(String galleryURL){
-        return galleries.get(galleryURL);
+    public Gallery getGalleryByName(String galleryName){
+        return galleries.get(galleryName);
     }
 
     public AlbumDisplayer getDisplayer() {

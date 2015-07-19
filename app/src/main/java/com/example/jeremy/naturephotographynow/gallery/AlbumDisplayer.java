@@ -6,6 +6,8 @@ import android.widget.Toast;
 
 import com.example.jeremy.naturephotographynow.MainActivity;
 
+import java.util.List;
+
 /**
  * Created by Mezzo on 6/10/2015.
  * An abstract class to display an Album.
@@ -17,7 +19,7 @@ public abstract class AlbumDisplayer {
         this.album = album;
     }
 
-    public abstract String display();
+    public abstract List display();
 
     public Album getAlbum() {
         return album;

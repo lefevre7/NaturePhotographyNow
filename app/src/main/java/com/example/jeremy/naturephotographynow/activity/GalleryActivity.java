@@ -17,6 +17,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.jeremy.naturephotographynow.R;
+import com.example.jeremy.naturephotographynow.gallery.VerticalAlbumDisplayer;
+import com.example.jeremy.naturephotographynow.scraping.SiteMapper;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -24,6 +26,7 @@ import org.w3c.dom.NodeList;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Creates (will obtain) a list (that will be images, but right now is an example)
@@ -99,27 +102,11 @@ public class GalleryActivity extends ActionBarActivity {
         listView = (ListView) findViewById(R.id.list);
 
         // Defined Array values to show in ListView
-        final String[] values = new String[] { "Stock",
-                "Utah",
-                "Arizona",
-                "California",
-                "Colorado",
-                "Nevada",
-                "Wyoming",
-                "Black and White",
-                "Appalachia",
-                "Celestial Views",
-                "Flora and Fauna",
-                "Ghost Towns",
-                "Seascapes",
-                "Panoramic",
-                "Nature's Patterns",
-                "Temples",
-                "Architecture",
-                "Novelty",
-                "Wildlife",
-                "People"
-        };
+        SiteMapper sm = SiteMapper.getInstance();
+        List<String> objValues = new VerticalAlbumDisplayer(sm.getAlbum()).display();
+
+        final String[] values;
+        values = objValues.toArray(new String[objValues.size()]);
 
         // Define a new Adapter
         // First parameter - Context
@@ -164,235 +151,29 @@ public class GalleryActivity extends ActionBarActivity {
                 /*// ListView Clicked item value
                 String  itemValue    = (String) list.getItemAtPosition(position);*/
 
-                // Show Alert
+                /*
+               //Show Alert
                 Toast.makeText(getApplicationContext(),
                         "Position :" + itemPosition + "  ListItem : " + itemValue, Toast.LENGTH_LONG)
                         .show();
+                //*/
 
                 //instead of getting the activities through an html parser class,
                 //they are specifically given.
                 Uri uri;
                 String selection = values[(int) id];
-                Intent intent;
+                Intent intent = new Intent(parent.getContext(), PictureActivity.class);
                 Log.i("GalleryActivityTag", "Opening a GalleryActivity.");
+                intent.putExtra("selection", selection);
+
+                Log.i("GalleryActivityTag", "Trying to open PictureActivity.");
                 try {
-                    switch (selection) {
-                        case "Stock":
-                            //change to Stock web page
-                            uri = Uri.parse("http://naturephotographynow.com/gallery/stock-" +
-                                    "gallery/wash-mon-2-x-1920/");
-                            intent = new Intent(Intent.ACTION_VIEW, uri);
-                            startActivity(intent);
-                            break;
-
-                        case "Utah":
-                            //change to the Utah web page
-                            uri = Uri.parse("http://www.naturephotographynow.com/#/gallery/" +
-                                    "utah/autumn-2/");
-                            intent = new Intent(Intent.ACTION_VIEW, uri);
-                            startActivity(intent);
-                            break;
-
-                        case "Arizona":
-                            //change to Arizona web page
-                            uri = Uri.parse("http://www.naturephotographynow.com/#/gallery/" +
-                                    "arizona/antelope-canyon-quad-image/");
-                            intent = new Intent(Intent.ACTION_VIEW, uri);
-                            startActivity(intent);
-                            break;
-
-                        case "California":
-                            //change to the California web page
-                            uri = Uri.parse("http://www.naturephotographynow.com/#/gallery/" +
-                                    "california/3756-mono-lake-crop-x-1920/");
-                            intent = new Intent(Intent.ACTION_VIEW, uri);
-                            startActivity(intent);
-                            break;
-                        case "Colorado":
-                            //change to Colorado web page
-                            uri = Uri.parse("http://www.naturephotographynow.com/#/gallery/" +
-                                    "colorado/alpine-tundra/");
-                            intent = new Intent(Intent.ACTION_VIEW, uri);
-                            startActivity(intent);
-                            break;
-
-                        case "Nevada":
-                            //change to the Nevada web page
-                            uri = Uri.parse("http://www.naturephotographynow.com/#/gallery/" +
-                                    "nevada/a-stand-of-joshua-trees-at-red-rock/");
-                            intent = new Intent(Intent.ACTION_VIEW, uri);
-                            startActivity(intent);
-                            break;
-
-                        case "Wyoming":
-                            //change to Wyoming web page
-                            uri = Uri.parse("http://www.naturephotographynow.com/#/gallery/" +
-                                    "wyoming/biscuit-basin-yellowstone/");
-                            intent = new Intent(Intent.ACTION_VIEW, uri);
-                            startActivity(intent);
-                            break;
-
-                        case "Black and White":
-                            //change to the Black and White web page
-                            uri = Uri.parse("http://www.naturephotographynow.com/#/gallery/" +
-                                    "black-and-white/borax-wagon-2/");
-                            intent = new Intent(Intent.ACTION_VIEW, uri);
-                            startActivity(intent);
-                            break;
-                        case "Appalachia":
-                            //change to Appalachia web page
-                            uri = Uri.parse("http://www.naturephotographynow.com/#/gallery/" +
-                                    "appalachia/appalachia-mile-post/");
-                            intent = new Intent(Intent.ACTION_VIEW, uri);
-                            startActivity(intent);
-                            break;
-
-                        case "Celestial Views":
-                            //change to the Celestial Views web page
-                            uri = Uri.parse("http://www.naturephotographynow.com/#/gallery/" +
-                                    "celestial-views/crecent-moon/");
-                            intent = new Intent(Intent.ACTION_VIEW, uri);
-                            startActivity(intent);
-                            break;
-
-                        case "Flora and Fauna":
-                            //change to Flora and Fauna web page
-                            uri = Uri.parse("http://www.naturephotographynow.com/#/gallery/" +
-                                    "flora-and-fauna/laceleaf-maple/");
-                            intent = new Intent(Intent.ACTION_VIEW, uri);
-                            startActivity(intent);
-                            break;
-
-                        case "Ghost Towns":
-                            //change to the Ghost Towns web page
-                            uri = Uri.parse("http://www.naturephotographynow.com/#/gallery/" +
-                                    "ghost-towns/american-bottling-company/");
-                            intent = new Intent(Intent.ACTION_VIEW, uri);
-                            startActivity(intent);
-                            break;
-                        case "Architecture":
-                            //change to Architecture web page
-                            uri = Uri.parse("http://www.naturephotographynow.com/#/gallery/" +
-                                    "architecture/autumn-under-ice/");
-                            intent = new Intent(Intent.ACTION_VIEW, uri);
-                            startActivity(intent);
-                            break;
-
-                        case "Novelty":
-                            //change to the Novelty web page
-                            uri = Uri.parse("http://www.naturephotographynow.com/#/gallery/" +
-                                    "novelty/55-chevy-1/");
-                            intent = new Intent(Intent.ACTION_VIEW, uri);
-                            startActivity(intent);
-                            break;
-
-                        case "Wildlife":
-                            //change to Wildlife web page
-                            uri = Uri.parse("http://naturephotographynow.com/gallery/" +
-                                    "wildlife/butterfly-2/");
-                            intent = new Intent(Intent.ACTION_VIEW, uri);
-                            startActivity(intent);
-                            break;
-
-                        case "Temples":
-                            //change to the Temples web page
-                            uri = Uri.parse("http://www.naturephotographynow.com/#/gallery/" +
-                                    "temples/boundiful-temple-5/");
-                            intent = new Intent(Intent.ACTION_VIEW, uri);
-                            startActivity(intent);
-                            break;
-                        case "Seascapes":
-                            //change to Seascapes web page
-                            uri = Uri.parse("http://www.naturephotographynow.com/#/gallery/" +
-                                    "seascapes/huntington-beach/");
-                            intent = new Intent(Intent.ACTION_VIEW, uri);
-                            startActivity(intent);
-                            break;
-
-                        case "Panoramic":
-                            //change to the Panoramic web page
-                            uri = Uri.parse("http://www.naturephotographynow.com/#/gallery/" +
-                                    "panoramic/antelope-canyon-amber-panoramic/");
-                            intent = new Intent(Intent.ACTION_VIEW, uri);
-                            startActivity(intent);
-                            break;
-
-                        case "Nature's Patterns":
-                            //change to Nature's Patterns web page
-                            uri = Uri.parse("http://www.naturephotographynow.com/#/gallery/" +
-                                    "natures-patterns/antelope-canyon-composite/");
-                            intent = new Intent(Intent.ACTION_VIEW, uri);
-                            startActivity(intent);
-                            break;
-
-                        case "People":
-                            //change to the People web page
-                            uri = Uri.parse("http://www.naturephotographynow.com/#/gallery/" +
-                                    "people/coyote-buttes-gang/");
-                            intent = new Intent(Intent.ACTION_VIEW, uri);
-                            startActivity(intent);
-                            break;
-                    }
+                    startActivity(intent);
                 }
-                    catch(Exception e) {
-                        Log.e("GalleryActivityTag", "A GalleryActivity has stopped probably due " +
-                                "to it's not being on the website anymore. This is the StackTrace:");
-                        e.printStackTrace();
-                        final Toast toast = Toast.makeText(GalleryActivity.this, "Click " +
-                                "\"[Navigation Menu]\", then scroll down to and click" +
-                                " \"Galleries\" on the top of the screen.", Toast.LENGTH_LONG);
-                        toast.show();
-
-                        /** Make the Toast show for 5 seconds */
-                        new CountDownTimer(5000, 1000) {
-                            /**
-                             * Shows the toast message for millisUntilFinished
-                             * @param millisUntilFinished milliseconds until finished
-                             */
-                            public void onTick(long millisUntilFinished) {
-                                toast.show();
-                            }
-
-                            /**
-                             * Shows the toast message until it's finished
-                             */
-                            public void onFinish() {
-                                toast.show();
-                            }
-
-                        }.start();
-
-                        uri = Uri.parse("http://www.naturephotographynow.com/");
-                        intent = new Intent(Intent.ACTION_VIEW, uri);
-                        startActivity(intent);
-                    }
-
-                //public void handleButtonClick(View view) {
-                /*Intent intent = new Intent(parent.getContext(), PictureActivity.class);
-
-
-                    EditText editText1 = (EditText) findViewById(R.id.Book);
-                    EditText editText2 = (EditText) findViewById(R.id.Chapter);
-                    EditText editText3 = (EditText) findViewById(R.id.Verse);
-
-                    String book = editText1.getText().toString();
-                    String chapter = editText2.getText().toString();
-                    String verse = editText3.getText().toString();
-
-                intent.putExtra("theString", itemValue);
-
-                //intent.putExtra("theBook", book);
-                //intent.putExtra("theChapter", chapter);
-                //intent.putExtra("theVerse", verse);
-
-                    Log.i("GalleryActivityTag", "Trying to open PictureActivity.");
-                    try {
-                        startActivity(intent);
-                    }
-                    catch(Exception e) {
-                        Log.e("GalleryActivityTag", "PictureActivity has stopped");
-                        e.printStackTrace();
-                }*/
+                catch(Exception e) {
+                    Log.e("GalleryActivityTag", "PictureActivity has stopped");
+                    e.printStackTrace();
+                }
 
             }
 
