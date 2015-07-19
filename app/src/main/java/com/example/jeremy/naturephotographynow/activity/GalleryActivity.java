@@ -27,23 +27,6 @@ public class GalleryActivity extends ActionBarActivity {
     /** A tag for logging purposes */
     public static final String GalTAG = "GalleryActivityTag";
 
-    //private Intent getHorizInstance() {
-    //        return intent1;
-    //}
-
-    /*// All static variables
-    static final String URL = "http://api.androidhive.info/music/music.xml";
-    // XML node keys
-    static final String KEY_SONG = "song"; // parent node
-    static final String KEY_ID = "id";
-    static final String KEY_TITLE = "title";
-    static final String KEY_ARTIST = "artist";
-    static final String KEY_DURATION = "duration";
-    static final String KEY_THUMB_URL = "thumb_url";
-
-    ListView list;
-    LazyAdapter adapter;*/
-
     ListView listView;
 
 

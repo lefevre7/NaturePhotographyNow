@@ -7,8 +7,8 @@ import java.io.File;
  */
 public class Image {
     private String url;
-    //&mezzo: for some reason BufferedImage won't import :/
-    private File imageData;
+
+    private String pageUrl;
 
     public String getUrl() {
         return url;
@@ -18,12 +18,12 @@ public class Image {
         this.url = url;
     }
 
-    public File getImageData() {
-        return imageData;
+    public String getPageUrl() {
+        return pageUrl;
     }
 
-    public void setImageData(File imageData) {
-        this.imageData = imageData;
+    public void setPageUrl(String pageUrl) {
+        this.pageUrl = pageUrl;
     }
 
 }

@@ -16,6 +16,10 @@ public class Gallery {
          picArray = new ArrayList<Picture>();
     }
 
+    public Picture get(int id){
+        return picArray.get(id);
+    }
+
     public GalleryDisplayer getDisplayer() {
         return displayer;
     }
