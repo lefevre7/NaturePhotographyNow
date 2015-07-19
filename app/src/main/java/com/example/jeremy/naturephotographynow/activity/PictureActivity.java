@@ -24,7 +24,7 @@ public class PictureActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        String itemValue = intent.getStringExtra("theString");
+        String itemValue = intent.getStringExtra("selection");
 
         GridView gridview = (GridView) findViewById(R.id.gridview);
         gridview.setAdapter(new ImageAdapter(this));
@@ -43,15 +43,7 @@ public class PictureActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         Intent intent = getIntent();
 
-        String itemValue = intent.getStringExtra("theString");
-        /*String book = intent.getStringExtra("theBook");
-        String chapter = intent.getStringExtra("theChapter");
-        String verse = intent.getStringExtra("theVerse");
-
-        // Create the text view
-        TextView textView = new TextView(this);
-        textView.setTextSize(40);
-        textView.setText("Your favorite scripture is: " + book + " " + chapter + ":" + verse);*/
+        String itemValue = intent.getStringExtra("selection");
 
         // Set the text view as the activity layout
         //setContentView(textView);

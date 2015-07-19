@@ -10,7 +10,6 @@ public class Gallery {
     List<Picture> picArray;
     GalleryDisplayer displayer;
     String name;
-    String url;
     Thumbnail thumbnail;
 
     public Gallery(){
@@ -43,13 +42,5 @@ public class Gallery {
 
     public void setThumbnail(Thumbnail thumbnail) {
         this.thumbnail = thumbnail;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
     }
 }

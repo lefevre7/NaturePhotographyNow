@@ -1,5 +1,9 @@
 package com.example.jeremy.naturephotographynow.gallery;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * Created by Mezzo on 6/10/2015.
  */
@@ -10,11 +14,12 @@ public class VerticalAlbumDisplayer extends AlbumDisplayer {
     }
 
     @Override
-    public String display() {
-        String toReturn = "";
+    public List<String> display() {
+        List<String> toReturn = new ArrayList<String>();
         for(Gallery gallery : this.getAlbum().galleries.values()){
-            toReturn += gallery.getName() + "\n";
+            toReturn.add(gallery.getName());
         }
+        Collections.sort(toReturn);
         return toReturn;
     }
 }

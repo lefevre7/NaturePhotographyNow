@@ -1,5 +1,7 @@
 package com.example.jeremy.naturephotographynow.gallery;
 
+import java.util.List;
+
 /**
  * Created by Mezzo on 6/10/2015.
  */
@@ -9,11 +11,11 @@ public class HorizontalAlbumDisplayer extends AlbumDisplayer {
     }
 
     @Override
-    public String display() {
+    public List display() {
         String toReturn = "";
         for(Gallery gallery : this.getAlbum().galleries.values()){
             toReturn += gallery.getName() + " ";
         }
-        return toReturn;
+        return null;
     }
 }

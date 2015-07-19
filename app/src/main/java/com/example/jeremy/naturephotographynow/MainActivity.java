@@ -323,12 +323,14 @@ public class MainActivity extends ActionBarActivity {
         super.onPostCreate(savedInstanceState);
         mDrawerToggle.syncState();
         String url = "http://www.naturephotographynow.com/";
+        /*
         WebView webview1 = (WebView) this.findViewById(R.id.webView3);
         webview1.getSettings().setJavaScriptEnabled(true);
         webview1.getSettings().setLoadWithOverviewMode(true);
         webview1.getSettings().setUseWideViewPort(true);
         webview1.getSettings().setBuiltInZoomControls(true);
         webview1.loadUrl(url);
+        //*/
     }
 
     /**
