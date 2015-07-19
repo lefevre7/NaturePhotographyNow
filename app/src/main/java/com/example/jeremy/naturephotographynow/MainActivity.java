@@ -116,6 +116,7 @@ public class MainActivity extends ActionBarActivity {
                 switch (selection) {
                     case "Galleries":
                         //change to Gallery activity
+                        /*
                         if (orient == 0) {
                             Log.i("MainActivityTag", "if.");
                             intent = new Intent(parent.getContext(), HorizGalleryActivity.class);
@@ -123,7 +124,8 @@ public class MainActivity extends ActionBarActivity {
                         if (orient == 1){
                             Log.i("MainActivityTag", "else.");
                             intent = new Intent(parent.getContext(), GalleryActivity.class);
-                        }
+                        }//*/
+                        intent = new Intent(parent.getContext(), GalleryActivity.class);
                         startActivity(intent);
                         break;
 
