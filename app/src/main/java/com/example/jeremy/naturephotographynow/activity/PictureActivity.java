@@ -1,6 +1,7 @@
 package com.example.jeremy.naturephotographynow.activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -41,8 +42,11 @@ public class PictureActivity extends AppCompatActivity {
                                     int position, long id) {
                 /*Toast.makeText(PictureActivity.this, "" + position,
                         Toast.LENGTH_SHORT).show();*/
-                Intent intent = new Intent(parent.getContext(), IndividualPicture.class);
+                /*Intent intent = new Intent(parent.getContext(), IndividualPicture.class);
                 intent.putExtra("imgurl", g.get(position).getPageUrl());
+                startActivity(intent);*/
+                Uri uri = Uri.parse(g.get(position).getPageUrl());
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
             }
         });
