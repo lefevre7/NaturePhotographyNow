@@ -4,6 +4,7 @@ import java.io.File;
 
 /**
  * Created by Mezzo on 6/10/2015.
+ * Contains an Image
  */
 public class Image {
     private String url;

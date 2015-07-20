@@ -5,8 +5,10 @@ import java.util.List;
 
 /**
  * Created by Mezzo on 6/10/2015.
+ * Displays a vertical Gallery
  */
 public class VerticalGalleryDisplayer extends GalleryDisplayer {
+    /** so that we can extend all of the existing parent class' methods and variables */
     public VerticalGalleryDisplayer(Gallery gallery) {
         super(gallery);
     }

@@ -40,6 +40,7 @@ public class SiteScraper {
 
     }
 
+    /** So that there's only one instance */
     public static SiteScraper getInstance(){
         if(SiteScraper.singleton == null){
             SiteScraper.singleton = new SiteScraper();
@@ -47,6 +48,13 @@ public class SiteScraper {
         return singleton;
     }
 
+    /** Initialize scraping:
+     * Gets the sitemap,
+     * Sets up the list of Galleries,
+     * adds their names,
+     * and starts adding the picture urls to the individual galleries to build the Album,
+     * then adds the image to the gallery (from the url) -takes a while (10-15 minutes).
+     * */
     public void init(String sitemapURL) throws IOException, ParserConfigurationException, SAXException {
         Document doc = getSiteMap(sitemapURL);
         Log.v("SiteScraper", "Document acquired");

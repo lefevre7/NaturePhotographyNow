@@ -2,6 +2,7 @@ package com.example.jeremy.naturephotographynow.gallery;
 
 /**
  * Created by Mezzo on 6/10/2015.
+ * Contains a name, thumbnail, and description
  */
 public class Picture extends Image{
     private String name;
