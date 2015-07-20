@@ -49,11 +49,12 @@ public class SiteScraper {
     }
 
     /** Initialize scraping:
-     * Gets the sitemap,
-     * Sets up the list of Galleries,
+     * gets the Nature Photography Now site map xml file,
+     * sets up the list of Galleries,
      * adds their names,
-     * and starts adding the picture urls to the individual galleries to build the Album,
-     * then adds the image to the gallery (from the url) -takes a while (10-15 minutes).
+     * and starts adding the picture urls to a String list of images,
+     * then loads the actual picture to the image,
+     * and adds the picture to the gallery -takes a while (10-15 minutes).
      * */
     public void init(String sitemapURL) throws IOException, ParserConfigurationException, SAXException {
         Document doc = getSiteMap(sitemapURL);
