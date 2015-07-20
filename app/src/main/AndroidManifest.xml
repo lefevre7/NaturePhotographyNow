@@ -21,14 +21,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.calendar"
-            android:label="@string/title_activity_calendar" >
-        </activity>
-        <activity
-            android:name=".activity.WebActivity"
-            android:label="@string/title_activity_web" >
-        </activity>
-        <activity
             android:name=".activity.GalleryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/title_activity_gallery" >

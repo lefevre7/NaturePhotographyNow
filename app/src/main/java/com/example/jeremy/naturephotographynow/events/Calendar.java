@@ -4,6 +4,7 @@ import java.util.List;
 
 /**
  * Created by Mezzo on 6/10/2015.
+ * Holds the Calendar
  */
 public class Calendar {
     private List<Events> events;

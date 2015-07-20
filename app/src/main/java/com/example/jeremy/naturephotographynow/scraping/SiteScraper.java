@@ -29,6 +29,7 @@ import javax.xml.parsers.ParserConfigurationException;
 
 /**
  * Created by Mezzo on 7/18/2015.
+ * Scrapes the Nature Photography Now Website
  */
 public class SiteScraper {
 
@@ -119,9 +120,32 @@ public class SiteScraper {
     }
 
     private String getPictureUrl(String pageURL) throws IOException {
-        org.jsoup.nodes.Document doc = Jsoup.connect(pageURL).get();
-        org.jsoup.nodes.Element node = doc.select("#gallery_big_img").first();
-        return node.attr("src");
+        try {
+            org.jsoup.nodes.Document doc = Jsoup.connect(pageURL).get();
+            org.jsoup.nodes.Element node = doc.select("#gallery_big_img").first();
+            return node.attr("src");
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            try {
+                org.jsoup.nodes.Document doc = Jsoup.connect(pageURL).get();
+                org.jsoup.nodes.Element node = doc.select("#gallery_big_img").first();
+                return node.attr("src");
+            }
+            catch (Exception e1) {
+                e1.printStackTrace();
+                try {
+                    org.jsoup.nodes.Document doc = Jsoup.connect(pageURL).get();
+                    org.jsoup.nodes.Element node = doc.select("#gallery_big_img").first();
+                    return node.attr("src");
+                } catch (Exception e2) {
+                    e2.printStackTrace();
+                    org.jsoup.nodes.Document doc = Jsoup.connect(pageURL).get();
+                    org.jsoup.nodes.Element node = doc.select("#gallery_big_img").first();
+                    return node.attr("src");
+                }
+            }
+        }
     }
 
     private Document getSiteMap(String sitemapURL) throws ParserConfigurationException, IOException, SAXException {

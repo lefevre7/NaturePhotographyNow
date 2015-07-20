@@ -21,7 +21,8 @@ import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListene
 
 /**
  * Created by Jeremy on 7/6/2015.
- * Creates a set of Pictures
+ * Creates a new ImageView for each item referenced by the Adapter and adapts it to be passed
+ * to PictureActivity
  */
 public class ImageAdapter extends BaseAdapter {
 
@@ -31,6 +32,7 @@ public class ImageAdapter extends BaseAdapter {
 
     private DisplayImageOptions options;
 
+    /** To adapt incoming images for PictureActivity */
     public ImageAdapter(Context context, Gallery gallery) {
         IMAGE_URLS = new VerticalGalleryDisplayer(gallery).display();
 
@@ -62,7 +64,7 @@ public class ImageAdapter extends BaseAdapter {
         return position;
     }
 
-    /** create a new ImageView for each item referenced by the Adapter*/
+    /** Create a new ImageView for each item referenced by the Adapter */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         final ViewHolder holder;

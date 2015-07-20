@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.jeremy.naturephotographynow.R;
 
@@ -80,25 +81,32 @@ public class EventsActivity extends ActionBarActivity {
             String loc = editText2.getText().toString();
             String desc = editText3.getText().toString();
 
-            String yr = editText4.getText().toString();
-            String mo = editText5.getText().toString();
-            String da = editText6.getText().toString();
+            try {
+                String yr = editText4.getText().toString();
+                String mo = editText5.getText().toString();
+                String da = editText6.getText().toString();
 
-            Integer yr1 = Integer.parseInt(yr);
-            Integer mo1 = Integer.parseInt(mo) - 1;//month "0" is January, not "1"
-            Integer da1 = Integer.parseInt(da);
+                Integer yr1 = Integer.parseInt(yr);
+                Integer mo1 = Integer.parseInt(mo) - 1;//month "0" is January, not "1"
+                Integer da1 = Integer.parseInt(da);
 
-            calIntent.putExtra(CalendarContract.Events.TITLE, title);
-            calIntent.putExtra(CalendarContract.Events.EVENT_LOCATION, loc);
-            calIntent.putExtra(CalendarContract.Events.DESCRIPTION, desc);
+                calIntent.putExtra(CalendarContract.Events.TITLE, title);
+                calIntent.putExtra(CalendarContract.Events.EVENT_LOCATION, loc);
+                calIntent.putExtra(CalendarContract.Events.DESCRIPTION, desc);
 
-            GregorianCalendar calDate = new GregorianCalendar(yr1, mo1, da1);
-            calIntent.putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, true);
-            calIntent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME,
-                    calDate.getTimeInMillis());
-            calIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME,
-                    calDate.getTimeInMillis());
+                GregorianCalendar calDate = new GregorianCalendar(yr1, mo1, da1);
+                calIntent.putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, true);
+                calIntent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME,
+                        calDate.getTimeInMillis());
+                calIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME,
+                        calDate.getTimeInMillis());
 
-            startActivity(calIntent);
+                startActivity(calIntent);
+            }
+            catch (Exception e) {
+                final Toast toast = Toast.makeText(EventsActivity.this, "DD, MM, and YYYY must be" +
+                                " numbers", Toast.LENGTH_LONG);
+                toast.show();
+            }
     }
 }

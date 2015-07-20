@@ -5,6 +5,7 @@ import java.util.List;
 
 /**
  * Created by Mezzo on 6/10/2015.
+ * Holds a Gallery of pictures.
  */
 public class Gallery {
     List<Picture> picArray;

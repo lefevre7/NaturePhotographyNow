@@ -27,6 +27,12 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 
+import org.xml.sax.SAXException;
+
+import java.io.IOException;
+
+import javax.xml.parsers.ParserConfigurationException;
+
 /**
  * On startup, this activity creates a Navigation Drawer with a list of items,
  * which, when clicked on, brings the user to a new activity.
