@@ -4,8 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.SystemClock;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -17,6 +19,7 @@ import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.jeremy.naturephotographynow.activity.EventsActivity;
@@ -30,6 +33,7 @@ import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -44,9 +48,9 @@ public class MainActivity extends ActionBarActivity {
     private ArrayAdapter<String> mAdapter;
     private ActionBarDrawerToggle mDrawerToggle;
     private String mActivityTitle;
+    protected int prog = 0;
     /** A tag for logging purposes */
     public static final String MAINTAG = "MainActivityTag";
-    //Bundle savedInstanceState;
 
     /**
      * Sets the variables and Navigation Drawer
@@ -56,18 +60,111 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        new Thread(new Runnable() {
+        //*
+        try {
+            new Thread(new Runnable() {
             public void run(){
                 SiteScraper sm = SiteScraper.getInstance();
+
+                Log.i("Sitemapper", "Starting sitemap load");
+
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        dispMessage1();
+                    }
+                });
+
+                try {
+                    sm.init("http://naturephotographynow.com/sitemap.xml");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    runOnUiThread(new Runnable() {
+                        public void run() {
+                            dispMessage();
+                        }
+                    });
+                } catch (ParserConfigurationException e) {
+                    e.printStackTrace();
+                    runOnUiThread(new Runnable() {
+                        public void run() {
+                            dispMessage();
+                        }
+                    });
+                } catch (SAXException e) {
+                    e.printStackTrace();
+                    runOnUiThread(new Runnable() {
+                        public void run() {
+                            dispMessage();
+                        }
+                    });
+                }
+                    while ((prog = sm.getProgress()) != 1) {
+                        runOnUiThread(new Runnable() {
+                            public void run() {
+                                try {
+                                    dispProg(prog * 100);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+                        );
+                    }
+
+                Log.i("Sitemapper", "Sitemap loaded");
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        dispMessage2();
+                    }
+                });
+            }
+        }).start();
+        } catch (Exception e) {
+            e.printStackTrace();
+            runOnUiThread(new Runnable() {
+                public void run() {
+                    dispMessage();
+                }
+            });
+        }
+
+
+
+        //*/
+
+        /* //didn't work
+        class handleLoadFilesClickAsyncTask extends AsyncTask<ArrayList<String>, Integer, ArrayList<String>> {
+
+            @Override
+            protected ArrayList<String> doInBackground(ArrayList<String>... strings) {
+
+                ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
+                SiteScraper sm = SiteScraper.getInstance();
+                int i = 0;
                 try {
                     Log.i("Sitemapper", "Starting sitemap load");
                     sm.init("http://naturephotographynow.com/sitemap.xml");
+                    publishProgress(sm.getProgress()*100);
                     Log.i("Sitemapper", "Sitemap loaded");
                 } catch (Exception e) {
                     e.printStackTrace();
+                    final Toast toast = Toast.makeText(MainActivity.this, "There is not a good " +
+                            "connection with www.naturephotographynow.com. Please close the app " +
+                            "and try again later.", Toast.LENGTH_LONG);
+                    toast.show();
                 }
+                return null;
             }
-        }).start();
+
+            @Override
+            protected void onProgressUpdate(Integer... progress) {
+                //update the progress
+                ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
+                progressBar.setProgress(progress[0]);
+            }
+        }
+
+        doInBackground(ArrayList<String>... strings);//*/
 
         initImageLoader(getApplicationContext());
 
@@ -85,6 +182,35 @@ public class MainActivity extends ActionBarActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
     }
+
+    public void dispProg(Integer k) throws InterruptedException {
+        String k1 = k.toString();
+        final Toast toast1 = Toast.makeText(MainActivity.this, "Downloading:" +
+                " " + k1 + "%", Toast.LENGTH_LONG);
+        toast1.show();
+        Thread.sleep(10000);
+    }
+
+    public void dispMessage(){
+        final Toast toast = Toast.makeText(MainActivity.this, "There is not a good " +
+                "connection with www.naturephotographynow.com. Please close the app " +
+                "and try again later.", Toast.LENGTH_LONG);
+        toast.show();
+    }
+
+    public void dispMessage1(){
+        final Toast toast = Toast.makeText(MainActivity.this, "Downloading " +
+                "Nature Photography Now content", Toast.LENGTH_LONG);
+        toast.show();
+    }
+
+    public void dispMessage2(){
+        final Toast toast = Toast.makeText(MainActivity.this, "Downloading " +
+                "Complete", Toast.LENGTH_LONG);
+        toast.show();
+    }
+
+
 
     private static void initImageLoader(Context context) {
         ImageLoaderConfiguration.Builder config = new ImageLoaderConfiguration.Builder(context);

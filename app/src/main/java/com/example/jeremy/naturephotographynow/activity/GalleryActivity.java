@@ -70,10 +70,10 @@ public class GalleryActivity extends ActionBarActivity {
 
             /**
              * When clicked on, the user is taken to an individual gallery.
-             * @param parent passes in a reference to the parent
-             * @param view passes in the view
-             * @param position passes in the position of the list item
-             * @param id passes in the id of the list item
+             * @param parent AdapterView<?>
+             * @param view View
+             * @param position int
+             * @param id long
              */
             @Override
             public void onItemClick(AdapterView<?> parent, View view,

@@ -1,8 +1,11 @@
 package com.example.jeremy.naturephotographynow.scraping;
 
+import android.content.Context;
 import android.util.Log;
 import android.util.Pair;
+import android.widget.Toast;
 
+import com.example.jeremy.naturephotographynow.MainActivity;
 import com.example.jeremy.naturephotographynow.gallery.Album;
 import com.example.jeremy.naturephotographynow.gallery.Gallery;
 import com.example.jeremy.naturephotographynow.gallery.Picture;
@@ -35,6 +38,8 @@ public class SiteScraper {
 
     private Album album;
     private static SiteScraper singleton;
+    int numPics = 0;
+    int loadingPicNum = 0;
 
     private SiteScraper(){
 
@@ -48,13 +53,17 @@ public class SiteScraper {
         return singleton;
     }
 
+    public int getProgress() {
+        return loadingPicNum/numPics;
+    }
+
     /** Initialize scraping:
      * gets the Nature Photography Now site map xml file,
      * sets up the list of Galleries,
      * adds their names,
      * and starts adding the picture urls to a String list of images,
-     * then loads the actual picture to the image,
-     * and adds the picture to the gallery -takes a while (10-15 minutes).
+     * then loads the actual picture to the image -takes a while (10-15 minutes),
+     * and adds the image to the gallery.
      * */
     public void init(String sitemapURL) throws IOException, ParserConfigurationException, SAXException {
         Document doc = getSiteMap(sitemapURL);
@@ -79,6 +88,7 @@ public class SiteScraper {
                     Pair<String, String> locgal = new Pair<String, String>(location, mGal.group(0));
                     images.add(locgal);
                     Log.v("SiteScraper", "Adding Picture " + location);
+                    numPics++;
                 } else {
                     galleries.add(location);
                     Log.v("SiteScraper", "Adding Gallery " + location);
@@ -122,6 +132,7 @@ public class SiteScraper {
             Log.v("SiteScraper", "Getting Picture for " + pictureName);
             image.setUrl(getPictureUrl(imageLocationURL));
             image.setPageUrl(imageLocationURL);
+            loadingPicNum++;
 
             g.addPicture(image);
         }
@@ -129,32 +140,30 @@ public class SiteScraper {
     }
 
     private String getPictureUrl(String pageURL) throws IOException {
-        try {
-            org.jsoup.nodes.Document doc = Jsoup.connect(pageURL).get();
-            org.jsoup.nodes.Element node = doc.select("#gallery_big_img").first();
-            return node.attr("src");
-        }
-        catch (Exception e){
-            e.printStackTrace();
             try {
                 org.jsoup.nodes.Document doc = Jsoup.connect(pageURL).get();
                 org.jsoup.nodes.Element node = doc.select("#gallery_big_img").first();
                 return node.attr("src");
-            }
-            catch (Exception e1) {
-                e1.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
                 try {
                     org.jsoup.nodes.Document doc = Jsoup.connect(pageURL).get();
                     org.jsoup.nodes.Element node = doc.select("#gallery_big_img").first();
                     return node.attr("src");
-                } catch (Exception e2) {
-                    e2.printStackTrace();
-                    org.jsoup.nodes.Document doc = Jsoup.connect(pageURL).get();
-                    org.jsoup.nodes.Element node = doc.select("#gallery_big_img").first();
-                    return node.attr("src");
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                    try {
+                        org.jsoup.nodes.Document doc = Jsoup.connect(pageURL).get();
+                        org.jsoup.nodes.Element node = doc.select("#gallery_big_img").first();
+                        return node.attr("src");
+                    } catch (Exception e2) {
+                        e2.printStackTrace();
+                        org.jsoup.nodes.Document doc = Jsoup.connect(pageURL).get();
+                        org.jsoup.nodes.Element node = doc.select("#gallery_big_img").first();
+                        return node.attr("src");
+                    }
                 }
             }
-        }
     }
 
     private Document getSiteMap(String sitemapURL) throws ParserConfigurationException, IOException, SAXException {
