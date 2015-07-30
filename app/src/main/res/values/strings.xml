@@ -12,9 +12,9 @@
 
     <!-- Content Description -->
     <string name="desc_list_item_icon">Item Icon</string>
-    <string name="title_activity_gallery">GalleryActivity</string>
-    <string name="title_activity_events">EventsActivity</string>
-    <string name="title_activity_picture">Picture</string>
+    <string name="title_activity_gallery">Galleries</string>
+    <string name="title_activity_events">Events</string>
+    <string name="title_activity_picture">Pictures</string>
     <string name="title_activity_individual_picture">IndividualPicture</string>
 
 </resources>

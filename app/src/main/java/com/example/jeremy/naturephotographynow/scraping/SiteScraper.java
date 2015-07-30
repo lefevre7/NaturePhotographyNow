@@ -40,10 +40,22 @@ public class SiteScraper {
     private static SiteScraper singleton;
     int numPics = 0;
     int loadingPicNum = 0;
+    String error = " ";
 
     private SiteScraper(){
 
     }
+
+    /*
+    private static Context mContext;
+
+    public static Context getContext() {
+        return mContext;
+    }
+
+    public void setContext(Context mContext) {
+        this.mContext = mContext;
+    }//*/
 
     /** So that there's only one instance */
     public static SiteScraper getInstance(){
@@ -54,7 +66,10 @@ public class SiteScraper {
     }
 
     public int getProgress() {
-        return loadingPicNum/numPics;
+        if(numPics != 0) {
+            return loadingPicNum / numPics;
+        }
+        return 0;
     }
 
     /** Initialize scraping:
@@ -65,7 +80,7 @@ public class SiteScraper {
      * then loads the actual picture to the image -takes a while (10-15 minutes),
      * and adds the image to the gallery.
      * */
-    public void init(String sitemapURL) throws IOException, ParserConfigurationException, SAXException {
+    public int init(String sitemapURL) throws IOException, ParserConfigurationException, SAXException {
         Document doc = getSiteMap(sitemapURL);
         Log.v("SiteScraper", "Document acquired");
         List<String> galleries = new ArrayList<String>();
@@ -130,13 +145,20 @@ public class SiteScraper {
             Gallery g = album.getGalleryByName(galleryName);
 
             Log.v("SiteScraper", "Getting Picture for " + pictureName);
-            image.setUrl(getPictureUrl(imageLocationURL));
-            image.setPageUrl(imageLocationURL);
+            image.setUrl(error = getPictureUrl(imageLocationURL));
+            if (error.equals("error")){
+                return -1;
+            }
+            /*
+            Toast(getApplicationContext(), "Downloading:" +
+                    " "  + "%",Toast.LENGTH_LONG).show();
+            image.setPageUrl(imageLocationURL);//*/
             loadingPicNum++;
 
             g.addPicture(image);
         }
         Log.v("SiteScraper", "Album completed");
+        return 1;
     }
 
     private String getPictureUrl(String pageURL) throws IOException {
@@ -158,9 +180,14 @@ public class SiteScraper {
                         return node.attr("src");
                     } catch (Exception e2) {
                         e2.printStackTrace();
-                        org.jsoup.nodes.Document doc = Jsoup.connect(pageURL).get();
-                        org.jsoup.nodes.Element node = doc.select("#gallery_big_img").first();
-                        return node.attr("src");
+                        try {
+                            org.jsoup.nodes.Document doc = Jsoup.connect(pageURL).get();
+                            org.jsoup.nodes.Element node = doc.select("#gallery_big_img").first();
+                            return node.attr("src");
+                        } catch (Exception e3) {
+                            e3.printStackTrace();
+                            return "error";
+                        }
                     }
                 }
             }

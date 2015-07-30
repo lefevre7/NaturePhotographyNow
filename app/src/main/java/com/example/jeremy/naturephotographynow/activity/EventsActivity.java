@@ -38,6 +38,12 @@ public class EventsActivity extends ActionBarActivity {
         webview.getSettings().setUseWideViewPort(true);
         webview.getSettings().setBuiltInZoomControls(true);
         webview.loadUrl(url);
+
+        final Toast toast3 = Toast.makeText(EventsActivity.this, "Each letter in " +
+                        "DD, MM, and YYYY must all be used.",
+                Toast.LENGTH_LONG);
+        toast3.show();
+
     }
 
     @Override

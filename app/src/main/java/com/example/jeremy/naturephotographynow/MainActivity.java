@@ -49,6 +49,9 @@ public class MainActivity extends ActionBarActivity {
     private ActionBarDrawerToggle mDrawerToggle;
     private String mActivityTitle;
     protected int prog = 0;
+    int error = -2;
+    int e2 = 0;
+    SiteScraper sm = SiteScraper.getInstance();
     /** A tag for logging purposes */
     public static final String MAINTAG = "MainActivityTag";
 
@@ -64,7 +67,7 @@ public class MainActivity extends ActionBarActivity {
         try {
             new Thread(new Runnable() {
             public void run(){
-                SiteScraper sm = SiteScraper.getInstance();
+
 
                 Log.i("Sitemapper", "Starting sitemap load");
 
@@ -74,8 +77,16 @@ public class MainActivity extends ActionBarActivity {
                     }
                 });
 
-                try {
-                    sm.init("http://naturephotographynow.com/sitemap.xml");
+               //*/
+                  try {
+                    if (sm.init("http://naturephotographynow.com/sitemap.xml") == -1){
+                           runOnUiThread(new Runnable() {
+                            public void run() {
+                                dispMessage();
+                            }
+                        });
+
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                     runOnUiThread(new Runnable() {
@@ -97,19 +108,7 @@ public class MainActivity extends ActionBarActivity {
                             dispMessage();
                         }
                     });
-                }
-                    while ((prog = sm.getProgress()) != 1) {
-                        runOnUiThread(new Runnable() {
-                            public void run() {
-                                try {
-                                    dispProg(prog * 100);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        }
-                        );
-                    }
+                }//*/
 
                 Log.i("Sitemapper", "Sitemap loaded");
                 runOnUiThread(new Runnable() {
@@ -127,6 +126,24 @@ public class MainActivity extends ActionBarActivity {
                 }
             });
         }
+
+/*/
+            runOnUiThread(new Runnable() {
+                              public void run() {
+                                  //while ((prog = sm.getProgress()) != .9) {
+                                  if ((prog = sm.getProgress()) > .1 && prog < .15) {
+                                  try {
+                                      Log.i("Sitemapper", "Displaying Percentage");
+                                      dispProg(prog * 100);
+                                      //Thread.sleep(10000);
+                                  } catch (InterruptedException e) {
+                                      e.printStackTrace();
+                                  }
+                                  }
+                              }
+                          }
+            );
+        //*/
 
 
 
@@ -192,22 +209,97 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void dispMessage(){
+        e2 = 1;
         final Toast toast = Toast.makeText(MainActivity.this, "There is not a good " +
                 "connection with www.naturephotographynow.com. Please close the app " +
                 "and try again later.", Toast.LENGTH_LONG);
         toast.show();
+        /** Make the Toast show for 30 seconds */
+        new CountDownTimer(30000, 1000) {
+            /**
+             * Shows the toast message for millisUntilFinished
+             * @param millisUntilFinished long
+             */
+            public void onTick(long millisUntilFinished) {
+                toast.show();
+            }
+
+            /**
+             * Shows the toast message until it's finished
+             */
+            public void onFinish() {
+                toast.show();
+            }
+
+        }.start();
+        //System.exit(-1);
     }
 
     public void dispMessage1(){
         final Toast toast = Toast.makeText(MainActivity.this, "Downloading " +
-                "Nature Photography Now content", Toast.LENGTH_LONG);
+                "Nature Photography Now Content." , Toast.LENGTH_LONG);
         toast.show();
+        final Toast toast1 = Toast.makeText(MainActivity.this, "May take 10-20 minutes depending " +
+                        "on connection.",
+                Toast.LENGTH_LONG);
+        toast1.show();
+        final Toast toast2 = Toast.makeText(MainActivity.this, "App must also be running for the " +
+                        "downloading to complete.",
+                Toast.LENGTH_LONG);
+        toast2.show();
+        final Toast toast21 = Toast.makeText(MainActivity.this, "(So don't press the back button" +
+                        " to go home--press the home button.)",
+                Toast.LENGTH_LONG);
+        toast21.show();
+        final Toast toast3 = Toast.makeText(MainActivity.this, "Content in Galleries must also " +
+                        "be completely downloaded in order to be clicked on.",
+                Toast.LENGTH_LONG);
+        toast3.show();
+        /** Make the Toast show for 10 seconds */
+        new CountDownTimer(10000, 1000) {
+            /**
+             * Shows the toast message for millisUntilFinished
+             * @param millisUntilFinished long
+             */
+            public void onTick(long millisUntilFinished) {
+                toast3.show();
+            }
+
+            /**
+             * Shows the toast message until it's finished
+             */
+            public void onFinish() {
+                toast3.show();
+            }
+
+        }.start();
     }
 
     public void dispMessage2(){
-        final Toast toast = Toast.makeText(MainActivity.this, "Downloading " +
-                "Complete", Toast.LENGTH_LONG);
-        toast.show();
+        if (e2 == 0) {
+            final Toast toast = Toast.makeText(MainActivity.this, "Downloading " +
+                    "Complete", Toast.LENGTH_LONG);
+            toast.show();
+            /** Make the Toast show for 20 seconds */
+            new CountDownTimer(20000, 1000) {
+                /**
+                 * Shows the toast message for millisUntilFinished
+                 *
+                 * @param millisUntilFinished long
+                 */
+                public void onTick(long millisUntilFinished) {
+                    toast.show();
+                }
+
+                /**
+                 * Shows the toast message until it's finished
+                 */
+                public void onFinish() {
+                    toast.show();
+                }
+
+            }.start();
+        }
     }
 
 
@@ -228,10 +320,12 @@ public class MainActivity extends ActionBarActivity {
      * or other activity.
      */
     private void addDrawerItems() {
-        final String[] listArray = { "Galleries", "Events", "Blog", "Newsletter", "Contact the Artist", "About the Artist", "Artist's Resume",
-                "Invest in Fine Art Photography", "Our Services", "About Download Doc", "Download Doc",
-                "Product Information", "Workshops", "Books by the Artist", "Client Viewing", "Testimonials",
-                "Guarantee", "Model Release", "Terms of Use", "Go to Website"};
+        final String[] listArray = { "Galleries", "Events", "Blog", "Newsletter",
+                "Contact the Artist", "About the Artist", "Artist's Resume",
+                "Invest in Fine Art Photography", "Our Services", "About Download Doc",
+                "Download Doc", "Product Information", "Workshops", "Books by the Artist",
+                "Client Viewing", "Testimonials", "Guarantee", "Model Release", "Terms of Use",
+                "Go to Website"};
         mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listArray);
         mDrawerList.setAdapter(mAdapter);
 
@@ -263,7 +357,8 @@ public class MainActivity extends ActionBarActivity {
                         break;
                     case "Blog":
                         //change to the "Blog" web page
-                        final Toast toast = Toast.makeText(MainActivity.this, "Click \"[Navigation Menu]\", then \"Blog\" on the " +
+                        final Toast toast = Toast.makeText(MainActivity.this,
+                                "Click \"[Navigation Menu]\", then \"Blog\" on the " +
                                 "top of the screen.", Toast.LENGTH_LONG);
                         toast.show();
 
@@ -298,22 +393,26 @@ public class MainActivity extends ActionBarActivity {
                         startActivity(intent);
                         break;
                     case "Contact the Artist":
-                        uri = Uri.parse("http://www.naturephotographynow.com/#/page/contact-the-artist/");
+                        uri = Uri.parse("http://www.naturephotographynow.com/#/page/contact-" +
+                                "the-artist/");
                         intent = new Intent(Intent.ACTION_VIEW, uri);
                         startActivity(intent);
                         break;
                     case "About the Artist":
-                        uri = Uri.parse("http://www.naturephotographynow.com/#/page/about-the-artist/");
+                        uri = Uri.parse("http://www.naturephotographynow.com/#/page/about-the-" +
+                                "artist/");
                         intent = new Intent(Intent.ACTION_VIEW, uri);
                         startActivity(intent);
                         break;
                     case "Artist's Resume":
-                        uri = Uri.parse("http://www.naturephotographynow.com/#/page/artists-resume/");
+                        uri = Uri.parse("http://www.naturephotographynow.com/#/page/artists-" +
+                                "resume/");
                         intent = new Intent(Intent.ACTION_VIEW, uri);
                         startActivity(intent);
                         break;
                     case "Invest in Fine Art Photography":
-                        uri = Uri.parse("http://www.naturephotographynow.com/#/page/invest-in-fine-art-photography/");
+                        uri = Uri.parse("http://www.naturephotographynow.com/#/page/invest-in-" +
+                                "fine-art-photography/");
                         intent = new Intent(Intent.ACTION_VIEW, uri);
                         startActivity(intent);
                         break;
@@ -323,8 +422,10 @@ public class MainActivity extends ActionBarActivity {
                         startActivity(intent);
                         break;
                     case "Download Doc":
-                        final Toast toast2 = Toast.makeText(MainActivity.this, "Click  \"[Navigation Menu]\", then \"Download Doc\"" +
-                                " on the top of the screen under \"Customer Service\", on the dropdown menu.", Toast.LENGTH_LONG);
+                        final Toast toast2 = Toast.makeText(MainActivity.this,
+                                "Click  \"[Navigation Menu]\", then \"Download Doc\"" +
+                                " on the top of the screen under \"Customer Service\", " +
+                                        "on the dropdown menu.", Toast.LENGTH_LONG);
                         toast2.show();
 
                         /** Make the Toast show for 7 seconds */
@@ -351,12 +452,14 @@ public class MainActivity extends ActionBarActivity {
                         startActivity(intent);
                         break;
                     case "About Download Doc":
-                        uri = Uri.parse("http://www.naturephotographynow.com/#/page/about-download-dock/");
+                        uri = Uri.parse("http://www.naturephotographynow.com/#/page/about-" +
+                                "download-dock/");
                         intent = new Intent(Intent.ACTION_VIEW, uri);
                         startActivity(intent);
                         break;
                     case "Product Information":
-                        uri = Uri.parse("http://www.naturephotographynow.com/#/page/product-information/");
+                        uri = Uri.parse("http://www.naturephotographynow.com/#/page/product-" +
+                                "information/");
                         intent = new Intent(Intent.ACTION_VIEW, uri);
                         startActivity(intent);
                         break;
@@ -366,12 +469,14 @@ public class MainActivity extends ActionBarActivity {
                         startActivity(intent);
                         break;
                     case "Books by the Artist":
-                        uri = Uri.parse("http://www.naturephotographynow.com/#/page/books-by-the-artist/");
+                        uri = Uri.parse("http://www.naturephotographynow.com/#/page/books-by-the-" +
+                                "artist/");
                         intent = new Intent(Intent.ACTION_VIEW, uri);
                         startActivity(intent);
                         break;
                     case "Client Viewing":
-                        uri = Uri.parse("http://www.naturephotographynow.com/#/page/client-viewing/");
+                        uri = Uri.parse("http://www.naturephotographynow.com/#/page/client-" +
+                                "viewing/");
                         intent = new Intent(Intent.ACTION_VIEW, uri);
                         startActivity(intent);
                         break;
@@ -386,7 +491,8 @@ public class MainActivity extends ActionBarActivity {
                         startActivity(intent);
                         break;
                     case "Model Release":
-                        uri = Uri.parse("http://www.naturephotographynow.com/#/page/model-release/");
+                        uri = Uri.parse("http://www.naturephotographynow.com/#/page/model-" +
+                                "release/");
                         intent = new Intent(Intent.ACTION_VIEW, uri);
                         startActivity(intent);
                         break;
@@ -398,7 +504,8 @@ public class MainActivity extends ActionBarActivity {
 
                     default:
                         try {
-                            Log.i("MainActivityTag", "Trying to sep into a web activity that is not defined.");
+                            Log.i("MainActivityTag", "Trying to sep into a web activity that is " +
+                                    "not defined.");
                             //a different way to change to a web activity
                             String url = "http://www.naturephotographynow.com/";
                             Intent i = new Intent(Intent.ACTION_VIEW);
@@ -408,7 +515,8 @@ public class MainActivity extends ActionBarActivity {
                         } catch (Exception e) {
                             Log.e("MainActivityTag", "Could not go into web activity.", e);
 
-                            Toast.makeText(MainActivity.this, "Error with this Web Activity, push the back button", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "Error with this Web Activity, push " +
+                                    "the back button", Toast.LENGTH_SHORT).show();
 
                         }
                 }
@@ -445,6 +553,8 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
+
+        Log.i("MainActivityTag", "At post create.");
         mDrawerToggle.syncState();
         String url = "http://www.naturephotographynow.com/";
         //*
@@ -454,6 +564,23 @@ public class MainActivity extends ActionBarActivity {
         webview1.getSettings().setUseWideViewPort(true);
         webview1.getSettings().setBuiltInZoomControls(true);
         webview1.loadUrl(url);
+        //*/
+
+        /*/
+            //runOnUiThread(new Runnable() {
+                              //public void run() {
+                                  while ((prog = sm.getProgress()) != 1) {
+                                  try {
+                                      Log.i("Sitemapper", "Displaying Percentage");
+                                      dispProg(prog * 100);
+                                      //Thread.sleep(10000);
+                                  } catch (InterruptedException e) {
+                                      e.printStackTrace();
+                                  }
+                                  }
+                              //}
+                          //}
+           // );
         //*/
     }
 
